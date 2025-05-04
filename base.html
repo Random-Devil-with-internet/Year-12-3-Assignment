@@ -7,10 +7,10 @@
 </head>
 
 <body>  
-    <h2>Title</h2>
-    <h2>86490</h2>
-    <p><p>
-    <img></img>
-    <p></p>
+    <h2>{{books["book"]["name"]}}</h2>
+    <input></input>
+    <p>{{books["book"]["year"]}} {{books["book"]["rating"]}} {{books["book"]["length"]}}<p>
+    <img src="{{url_for('static', filename='books["book"]["image"]')}}" alt="{{books["book"]["name"]}}"">
+    <p>{{books["book"]["description"]}}</p>
 </body>
 </html>
