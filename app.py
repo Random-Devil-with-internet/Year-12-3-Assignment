@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from flask_login import LoginManager
 import os
 from models import db, User
-from accounts.acc import acc_bp
+from auth.auth import auth_bp
 #from general.gen import gen_bp  #comment out for now
 
 folderPath = os.path.dirname(os.path.abspath(__file__))
@@ -20,7 +20,7 @@ login_manager.login_view = 'acc.login'
 def load_user(id):
     return db.session.get(User, int(id))
 
-app.register_blueprint(acc_bp)
+app.register_blueprint(auth_bp)
 #app.register_blueprint(gen_bp)   #comment out for now
 
 if __name__ == "__main__":
