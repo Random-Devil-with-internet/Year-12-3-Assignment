@@ -8,13 +8,13 @@ from auth.auth import auth_bp
 folderPath = os.path.dirname(os.path.abspath(__file__))
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '75659702209ce37afc6a854d10d00363'
+app.config['SECRET_KEY'] = '75639702209fe37afc6a854d10d00363'
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + folderPath + "/reviews.db"
 
 db.init_app(app)
 
 login_manager = LoginManager(app)
-login_manager.login_view = 'acc.login'
+login_manager.login_view = 'auth.login'
 
 @login_manager.user_loader
 def load_user(id):
@@ -26,4 +26,4 @@ app.register_blueprint(auth_bp)
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=3000, debug=True)
