@@ -18,7 +18,6 @@ def login():
                 flash("Invalid password", "error")
         else:
             flash("Invalid username", "error")
-
     return render_template("auth/login.html")
 
 @auth_bp.route('/signup', methods=['GET', "POST"])

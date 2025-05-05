@@ -1,28 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Style.css') }}">
-    <title>Room Booking app</title>
-</head>
-    
-<body>
-    <div id="Con">
-        <div id="Con3">
-        <h1>Login</h1>
-        <form method="post" action="/login">
-            <label>Username:</label>
-            <input name="username">
-            <br>
-            <label id="l3">Password:</label>
-            <input name="password" type="password">
-            <br>
-            <button type="submit">Submit</button>
-        </form>
-        <p id="Error">{{ e2 }}</p>
-        <a href="{{ url_for('signup') }}">Don't have an account click here!</a>
-        </div>
-    </div>
+{% extends "base.html" %}
 
+{% block title %}Login - My Website{% endblock %}
 
-</body>
-</html>
+{% block content %}
+<h2>Login</h2>
+<form method="POST">
+    <label>Username:</label>
+    <input type="text" name="username" required>
+    <br>
+    <label>Password:</label>
+    <input type="password" name="password" required>
+    <br>
+    <button type="submit">Login</button>
+</form>
+{% endblock %}
