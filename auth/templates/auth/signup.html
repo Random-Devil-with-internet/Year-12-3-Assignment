@@ -3,14 +3,25 @@
 {% block title %}Login - My Website{% endblock %}
 
 {% block content %}
-<h2>Login</h2>
-<form method="POST">
+<h2>Sign Up</h2>
+<form method="post" action="/signup">
     <label>Username:</label>
-    <input type="text" name="username" required>
+    <input name="Username" />
     <br>
-    <label>Password:</label>
-    <input type="password" name="password" required>
+    <label id="l5">Password:</label>
+    <input name="Password" />
     <br>
-    <button type="submit">Login</button>
+    <label id="l6">Email:</label>
+    <input name="Email" />
+    <br>
+    <button type="submit">Submit</button>
 </form>
+{% with messages = get_flashed_messages()%}
+{% if messages%}
+    {% for message in messages%}
+    <br>
+    <p>{{message}}</p>
+    {%endfor%}
+{%endif%}
+{%endwith%}
 {% endblock %}

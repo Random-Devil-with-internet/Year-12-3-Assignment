@@ -1,6 +1,113 @@
+* {
+    padding:0;
+    margin: 0;
+}
+  
+html {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: rgb(189, 189, 189);
+}
+  
+h1 {
+    margin-bottom: 10px;
+}
+
 h2 {
+    margin-bottom: 10px;
+}
+  
+table {
+    width: 50%;
+    margin-top: 10px;
+    border-collapse: collapse;
     float: left;
 }
-input {
+  
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+      
+th {
+    background-color: rgb(158, 226, 255);
+}
+  
+input { 
+    margin-bottom: 10px;
+}
+  
+#User {
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+  
+#l1 {
+    padding-right: 43px;
+}
+      
+#l2 {
+    padding-right: 9.5px;
+}
+  
+#l3 {
+    padding-right: 6px;
+}
+  
+#l4 {
+    padding-right: 2px;
+}  
+  
+#l5 {
+    padding-right: 4.5px;
+}
+  
+#l6 {
+    padding-right: 10.5px;
+}
+    
+#Av {
+    margin-top: 20px;
+    border-style: solid;
+    width: 35%;
+}
+  
+#AvText {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+  
+#Sel {
+    margin-left: 400px;
+}
+  
+#Con {
+    display: flex;
+    margin-top: 5%;
+    justify-content: center;
+    width: 100%;
+}
+  
+#Con2 {
+    width: 700px;
+    background: white;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 10px 10px 10px 10px;
+}
+  
+#Con3 {
+    width: 300px;
+    background: white;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 10px 10px 10px 10px;
+}
+  
+#Error {
+    margin-top: 10px;
+}
+  
+#Logout {
     float: right;
 }

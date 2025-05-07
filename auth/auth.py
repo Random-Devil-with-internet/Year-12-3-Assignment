@@ -18,7 +18,7 @@ def login():
                 flash("Invalid password", "error")
         else:
             flash("Invalid username", "error")
-    return render_template("auth/login.html")
+    return render_template("/auth/login.html")
 
 @auth_bp.route('/signup', methods=['GET', "POST"])
 def signup():
@@ -28,8 +28,7 @@ def signup():
         db.session.add(newUser)
         db.session.commit()
         return redirect(url_for('auth.login'))
-    
-    return render_template('auth/signup.html')
+    return render_template("/auth/signup.html")
 
 @auth_bp.route('/logout')
 @login_required

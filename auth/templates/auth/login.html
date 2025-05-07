@@ -8,9 +8,17 @@
     <label>Username:</label>
     <input type="text" name="username" required>
     <br>
-    <label>Password:</label>
+    <label id="l3">Password:</label>
     <input type="password" name="password" required>
     <br>
     <button type="submit">Login</button>
 </form>
+{% with messages = get_flashed_messages()%}
+{% if messages%}
+    {% for message in messages%}
+    <br>
+    <p>{{message}}</p>
+    {%endfor%}
+{%endif%}
+{%endwith%}
 {% endblock %}
