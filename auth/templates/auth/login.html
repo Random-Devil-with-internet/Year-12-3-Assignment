@@ -13,12 +13,3 @@
     <br>
     <button type="submit">Login</button>
 </form>
-{% with messages = get_flashed_messages()%}
-{% if messages%}
-    {% for message in messages%}
-    <br>
-    <p>{{message}}</p>
-    {%endfor%}
-{%endif%}
-{%endwith%}
-{% endblock %}
