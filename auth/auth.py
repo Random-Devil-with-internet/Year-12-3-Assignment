@@ -3,7 +3,7 @@ from flask_login import current_user, login_user, login_required, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import db, User
 
-auth_bp = Blueprint('auth', __name__, url_prefix='/auth', template_folder="templates")
+auth_bp = Blueprint('auth', __name__, url_prefix='/', template_folder="templates")
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
@@ -27,7 +27,6 @@ def signup():
         newUser = User(username = request.form["username"], password = hashedPass, email = request.form["email"], bio = "fghf", profile_picture = "hhkjh")
         db.session.add(newUser)
         db.session.commit()
-        print('jfk')
         return redirect(url_for('auth.login'))
     return render_template("/auth/signup.html")
 
@@ -35,4 +34,4 @@ def signup():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('auth.login')) # you need to make sure that when using url_for(
+    return redirect(url_for('auth.login'))
