@@ -21,9 +21,10 @@
     <main>
         <div id="Con">
             <div id="Con2">
-        {% block content %}
-        <!-- Page-specific content will go here -->
-        {% endblock %}
+            {% block content %}
+            <!-- Page-specific content will go here -->
+            {% endblock %}
+            
             {% with messages = get_flashed_messages()%}
             {% if messages%}
                 {% for message in messages%}
@@ -32,7 +33,6 @@
                 {%endfor%}
             {%endif%}
             {%endwith%}
-            {% endblock %}
             </div>
         </div>
     </main>
