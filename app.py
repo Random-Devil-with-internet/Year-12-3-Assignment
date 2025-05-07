@@ -23,6 +23,10 @@ def load_user(id):
 app.register_blueprint(auth_bp)
 #app.register_blueprint(gen_bp)   #comment out for now
 
+@app.route('/', methods=['GET'])
+def home():
+    return render_template("/auth/login.html")
+
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()

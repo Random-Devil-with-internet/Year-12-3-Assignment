@@ -24,9 +24,10 @@ def login():
 def signup():
     if request.method == "POST":
         hashedPass = generate_password_hash(request.form["password"])
-        newUser = User(username = request.form["username"], password = hashedPass)
+        newUser = User(username = request.form["username"], password = hashedPass, email = request.form["email"], bio = "fghf", profile_picture = "hhkjh")
         db.session.add(newUser)
         db.session.commit()
+        print('jfk')
         return redirect(url_for('auth.login'))
     return render_template("/auth/signup.html")
 
