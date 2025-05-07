@@ -3,7 +3,7 @@ from flask_login import LoginManager
 import os
 from models import db, User
 from auth.auth import auth_bp
-#from general.gen import gen_bp  #comment out for now
+#from general.gen import gen_bp
 
 folderPath = os.path.dirname(os.path.abspath(__file__))
 
