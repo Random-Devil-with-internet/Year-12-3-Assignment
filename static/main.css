@@ -53,23 +53,6 @@ li a:hover {
     background-color: #111;
 }
   
-table {
-    width: 50%;
-    margin-top: 10px;
-    border-collapse: collapse;
-    float: left;
-}
-  
-th, td {
-    border: 1px solid black;
-    padding: 8px;
-    text-align: left;
-}
-      
-th {
-    background-color: rgb(158, 226, 255);
-}
-  
 input { 
     margin-bottom: 10px;
 }
