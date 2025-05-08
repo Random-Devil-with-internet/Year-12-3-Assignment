@@ -6,5 +6,5 @@ gen_bp = Blueprint('gen', __name__, url_prefix='/', template_folder="templates")
 
 @gen_bp.route('/home', methods=['GET', 'POST'])
 @login_required
-def Home():
+def home():
     return render_template("/gen/home.html")
