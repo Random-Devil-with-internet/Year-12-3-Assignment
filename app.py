@@ -3,7 +3,7 @@ from flask_login import LoginManager
 import os
 from models import db, User
 from auth.auth import auth_bp
-#from general.gen import gen_bp
+from gen.gen import gen_bp
 
 folderPath = os.path.dirname(os.path.abspath(__file__))
 
@@ -21,7 +21,7 @@ def load_user(id):
     return db.session.get(User, int(id))
 
 app.register_blueprint(auth_bp)
-#app.register_blueprint(gen_bp)   #comment out for now
+app.register_blueprint(gen_bp) 
 
 @app.route('/', methods=['GET'])
 def index():

@@ -13,7 +13,7 @@ def login():
             if check_password_hash(user.password, request.form["password"]):
                 #success
                 login_user(user)
-                return redirect(url_for('gen.home')) #my other blueprint is gen (for general)
+                return redirect(url_for('gen.home'))
             else:
                 flash("Invalid password", "error")
         else:
