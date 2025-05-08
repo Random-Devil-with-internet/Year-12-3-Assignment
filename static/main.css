@@ -15,6 +15,14 @@ h1 {
 h2 {
     margin-bottom: 10px;
 }
+
+a {
+    float: left;
+}
+
+p {
+    float: left;
+}
   
 table {
     width: 50%;
@@ -37,26 +45,6 @@ input {
     margin-bottom: 10px;
 }
   
-#User {
-    margin-right: 20px;
-    margin-bottom: 10px;
-}
-    
-#Av {
-    margin-top: 20px;
-    border-style: solid;
-    width: 35%;
-}
-  
-#AvText {
-    margin-left: 10px;
-    margin-bottom: 10px;
-}
-  
-#Sel {
-    margin-left: 400px;
-}
-  
 #Con {
     display: flex;
     margin-top: 5%;
@@ -70,20 +58,4 @@ input {
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     padding: 10px 10px 10px 10px;
-}
-  
-#Con3 {
-    width: 300px;
-    background: white;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    padding: 10px 10px 10px 10px;
-}
-  
-#Error {
-    margin-top: 10px;
-}
-  
-#Logout {
-    float: right;
 }
