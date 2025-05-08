@@ -8,20 +8,41 @@ html {
     background-color: rgb(189, 189, 189);
 }
   
-h1 {
-    margin-bottom: 10px;
-}
-
 h2 {
     margin-bottom: 10px;
 }
 
-a {
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+  
+li {
     float: left;
 }
+  
+li h1 {
+    display: block;
+    color: white;
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-decoration: none;
+}
 
-p {
-    float: left;
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+  
+li a:hover {
+    background-color: #111;
 }
   
 table {
@@ -48,6 +69,7 @@ input {
 #Con {
     display: flex;
     margin-top: 5%;
+    margin-bottom: 5%;
     justify-content: center;
     width: 100%;
 }
