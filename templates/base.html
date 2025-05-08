@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='Logo.png') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 </head>
 <body>
     <header>
         <ul>
+            <li><img src="{{ url_for('static', filename='Logo.png') }}" width="50" height="40"></li>
             <li><h1>LitLounge</h1></li>
             {% if current_user.is_authenticated %}
                 <li><a href="{{ url_for('gen.home') }}">Home</a></li>
