@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
+from sqlalchemy.sql.operators import ilike_op,like_op
 
 db = SQLAlchemy()
 

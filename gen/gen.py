@@ -8,6 +8,7 @@ gen_bp = Blueprint('gen', __name__, url_prefix='/', template_folder="templates")
 @login_required
 def home():
     if request.method == "POST":
-        result = User.query.filter(User.username == request.form["search"]).first()
+        result = User.query.filter(User.ilike(request.form["search"])).all()
+        result = db.select(User).filter(ilike_op(User.c.Movietitle, 'h%'))
         return render_template("/gen/home.html", result=result)
     return render_template("/gen/home.html")
