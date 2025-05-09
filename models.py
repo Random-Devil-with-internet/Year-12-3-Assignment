@@ -13,3 +13,15 @@ class User(UserMixin, db.Model):
     
     def __repr__(self):
         return f"<User {self.id} - {self.username}>"
+
+class Book(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(30), unique=True, nullable=False)
+    author = db.Column(db.String(20), nullable=False)
+    genre = db.Column(db.String(20), nullable=False)
+    publishing_date = db.Column(db.String(20))
+    blurb = db.Column(db.Text)
+    cover_link = db.Column(db.String(200))
+    
+    def __repr__(self):
+        return f"<User {self.id} - {self.title}>"
