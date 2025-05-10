@@ -3,5 +3,8 @@
 {% block title %}Home - LitLounge{% endblock %}
 
 {% block content %}
-<h2>{{ book }}</h2>
+<h2>{{ book.title }}</h2>
+<p>By {{ book.author }}</p>
+<p>Genre: {{ book.genre }}</p>
+<p>Publishing date: {{ book.publishing_date }}</p>
 {% endblock %}

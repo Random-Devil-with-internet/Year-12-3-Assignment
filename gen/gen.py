@@ -18,6 +18,6 @@ def search():
 @login_required
 def movie():
     if request.method == "POST":
-        book = result
+        book = Book.query.filter(Book.title == result).first() 
         return render_template("/gen/movie.html", book=book)
     return render_template("/gen/search.html")
