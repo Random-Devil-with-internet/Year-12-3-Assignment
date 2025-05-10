@@ -4,7 +4,14 @@
 
 {% block content %}
 <h2>{{ book.title }}</h2>
+<br>
 <p>By {{ book.author }}</p>
+<br>
 <p>Genre: {{ book.genre }}</p>
+<br>
 <p>Publishing date: {{ book.publishing_date }}</p>
+<br>
+<p>{{ book.blurb }}</p>
+<br>
+<img src="{{ book.cover_link }}" height="400" width="267">
 {% endblock %}
