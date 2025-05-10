@@ -13,7 +13,7 @@ def login():
             if check_password_hash(user.password, request.form["password"]):
                 #success
                 login_user(user)
-                return redirect(url_for('gen.home'))
+                return redirect(url_for('gen.search'))
             else:
                 flash("Invalid password", "error")
         else:

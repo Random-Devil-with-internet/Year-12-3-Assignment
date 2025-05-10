@@ -5,10 +5,19 @@ from sqlalchemy.sql.operators import ilike_op
 
 gen_bp = Blueprint('gen', __name__, url_prefix='/', template_folder="templates")
 
-@gen_bp.route('/home', methods=['GET', 'POST'])
+@gen_bp.route('/search', methods=['GET', 'POST'])
 @login_required
-def home():
+def search():
     if request.method == "POST":
+        global result
         result = db.session.scalar(db.select(Book.title).filter(ilike_op(Book.title, request.form["search"] + '%')))
-        return render_template("/gen/home.html", result=result)
-    return render_template("/gen/home.html")
+        return render_template("/gen/search.html", result=result)
+    return render_template("/gen/search.html")
+
+@gen_bp.route('/movie', methods=['GET', 'POST'])
+@login_required
+def movie():
+    if request.method == "POST":
+        book = result
+        return render_template("/gen/movie.html", book=book)
+    return render_template("/gen/search.html")
