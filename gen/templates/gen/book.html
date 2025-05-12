@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}{{ book.title }} - LitLounge{% endblock %}
+
+{% block content %}
+<h2>{{ book.title }}</h2>
+<p id="inline-block-child">By {{ book.author }} |</p>
+<p id="inline-block-child">Genre: {{ book.genre }} |</p>
+<p id="inline-block-child">Publishing date: {{ book.publishing_date }}</p>
+<br>
+<br>
+<p id="blurb">{{ book.blurb }}</p>
+<img id="inline-block-child" src="{{ book.cover_link }}" height="400" width="267">
+{% endblock %}

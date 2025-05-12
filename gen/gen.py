@@ -19,5 +19,5 @@ def search():
 def movie():
     if request.method == "POST":
         book = Book.query.filter(Book.title == result).first() 
-        return render_template("/gen/movie.html", book=book)
+        return render_template("/gen/book.html", book=book)
     return render_template("/gen/search.html")
