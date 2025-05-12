@@ -17,7 +17,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #ffffff;
 }
   
 li {
@@ -26,7 +26,7 @@ li {
   
 li h1 {
     display: block;
-    color: white;
+    color: rgb(0, 0, 0);
     text-align: center;
     padding-left: 5px;
     padding-right: 5px;
@@ -35,7 +35,7 @@ li h1 {
 
 li p {
     display: block;
-    color: white;
+    color: rgb(0, 0, 0);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -43,14 +43,14 @@ li p {
 
 li a {
     display: block;
-    color: white;
+    color: rgb(0, 0, 0);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
   
 li a:hover {
-    background-color: #111;
+    background-color: #c4c4c4;
 }
   
 input { 
@@ -66,6 +66,11 @@ button {
     background-color: rgb(118, 157, 255);
 }
 
+#middle {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 #inline-block-child {
     display: inline-block;
 }
@@ -75,6 +80,7 @@ button {
     padding: 0.5em;
     border-style:solid;
     border-color: #111;
+    border-radius: 4px;
     float: left;
     width: 400px;
 }
