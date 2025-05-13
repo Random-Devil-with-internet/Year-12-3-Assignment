@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import current_user, login_user, login_required, logout_user
-from models import db, Book
+from models import db, Book, Review
 from sqlalchemy.sql.operators import ilike_op
 
 gen_bp = Blueprint('gen', __name__, url_prefix='/', template_folder="templates")
@@ -21,3 +21,11 @@ def movie():
         book = Book.query.filter(Book.title == result).first() 
         return render_template("/gen/book.html", book=book)
     return render_template("/gen/search.html")
+
+@gen_bp.route('/review', methods=['GET', 'POST'])
+@login_required
+def review():
+    if request.method == "POST":
+        
+        return render_template("/gen/book.html", review=review)
+    return render_template("/gen/book.html")
