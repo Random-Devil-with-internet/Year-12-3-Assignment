@@ -3,6 +3,18 @@ from flask_login import UserMixin
 
 db = SQLAlchemy()
 
+class Book(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(30), unique=True, nullable=False)
+    author = db.Column(db.String(20), nullable=False)
+    genre = db.Column(db.String(20), nullable=False)
+    publishing_date = db.Column(db.String(20))
+    blurb = db.Column(db.Text)
+    cover_link = db.Column(db.String(200))
+    
+    def __repr__(self):
+        return f"<User {self.id} - {self.title}>"
+    
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
@@ -12,16 +24,15 @@ class User(UserMixin, db.Model):
     profile_picture = db.Column(db.String(200))
     
     def __repr__(self):
-        return f"<User {self.id} - {self.username}>"
-
-class Book(db.Model):
+        return f"<User {self.id} - {self.username}>"    
+    
+class Review(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(30), unique=True, nullable=False)
-    author = db.Column(db.String(20), nullable=False)
-    genre = db.Column(db.String(20), nullable=False)
+    BookID = db.Column(db.Integer, db.ForeignKey('Book.id'), nullable=False)
+    UserID = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
     publishing_date = db.Column(db.String(20))
-    blurb = db.Column(db.Text)
-    cover_link = db.Column(db.String(200))
+    text = db.Column(db.Text)
+    rating = db.Column(db.Integer)
     
     def __repr__(self):
         return f"<User {self.id} - {self.title}>"
