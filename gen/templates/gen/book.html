@@ -12,4 +12,10 @@
     <img id="inline-block-child" src="{{ book.cover_link }}" height="400" width="267">
 </div>
 <h2>Reviews</h2>
+<form method="POST" action="/review">
+    <input type="text" name="review">
+    <br>
+    <button type="submit">Make a review</button>
+</form>
+
 {% endblock %}

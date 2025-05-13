@@ -30,7 +30,7 @@ class Review(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     BookID = db.Column(db.Integer, db.ForeignKey('Book.id'), nullable=False)
     UserID = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
-    publishing_date = db.Column(db.String(20))
+    publishing_date = db.Column(db.String(20), nullable=False)
     text = db.Column(db.Text)
     rating = db.Column(db.Integer)
     
