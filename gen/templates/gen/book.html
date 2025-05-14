@@ -12,8 +12,20 @@
     <img id="inline-block-child" src="{{ book.cover_link }}" height="400" width="267">
 </div>
 <h2>Reviews</h2>
+{% for review in reviews %}
+    {% if book.id == review.bookID %}
+        {% for user in users %}
+            {% if user.id == review.userID %}
+                <p>{{ user.username }} {{ review.publishing_date }}</p>
+                <br>
+                <p>{{ review.test }}</p>
+                <br>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endfor %}
 <form method="POST" action="/review">
-    <input type="text" name="review">
+    <textarea name="review">
     <br>
     <button type="submit">Make a review</button>
 </form>

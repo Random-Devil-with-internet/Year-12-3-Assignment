@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import current_user, login_user, login_required, logout_user
-from models import db, Book, Review
+from models import db, Book, Review, User
 from sqlalchemy.sql.operators import ilike_op
 import datetime
 
@@ -34,5 +34,5 @@ def review():
         newReview = Review(bookID = book.id, userID = current_user.id, publishing_date = x.strftime("%x"), text = text)
         db.session.add(newReview)
         db.session.commit()
-        return render_template("/gen/book.html", review=review)
+        return render_template("/gen/book.html", users=User, reviews=Review, book=book)
     return render_template("/gen/book.html")
