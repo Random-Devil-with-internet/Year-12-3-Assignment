@@ -30,7 +30,8 @@ def review():
     if request.method == "POST":
         text = request.form["review"]
         x = datetime.datetime.now()
-        newReview = review(BookID = book, UserID = current_user.id, publishing_date = x.strftime("%x"), text = text)
+        print(book)
+        newReview = review(bookID = book.id, userID = current_user.id, publishing_date = x.strftime("%x"), text = text)
         db.session.add(newReview)
         db.session.commit()
         return render_template("/gen/book.html", review=review)

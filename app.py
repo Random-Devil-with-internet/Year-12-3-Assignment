@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from flask_login import LoginManager
 import os
-from models import db, User, Book
+from models import db, User, Book, Review
 from auth.auth import auth_bp
 from gen.gen import gen_bp
 
