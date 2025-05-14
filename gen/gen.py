@@ -21,7 +21,9 @@ def movie():
     if request.method == "POST":
         global book
         book = Book.query.filter(Book.title == result).first() 
-        return render_template("/gen/book.html", book=book)
+        for r in Review:
+            print('Review', r)
+        return render_template("/gen/book.html", users=User, reviews=Review, book=book)
     return render_template("/gen/search.html")
 
 @gen_bp.route('/review', methods=['GET', 'POST'])
@@ -30,7 +32,6 @@ def review():
     if request.method == "POST":
         text = request.form["review"]
         x = datetime.datetime.now()
-        print(book.id)
         newReview = Review(bookID = book.id, userID = current_user.id, publishing_date = x.strftime("%x"), text = text)
         db.session.add(newReview)
         db.session.commit()
