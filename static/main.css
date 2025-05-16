@@ -66,6 +66,11 @@ button {
     background-color: rgb(118, 157, 255);
 }
 
+textarea {
+    height: 100px;
+    width: 300px;
+}
+
 #middle {
     margin-top: 20px;
     margin-bottom: 20px;

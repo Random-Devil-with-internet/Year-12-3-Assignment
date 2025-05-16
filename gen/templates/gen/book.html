@@ -16,9 +16,9 @@
     {% if book.id == review.bookID %}
         {% for user in users %}
             {% if user.id == review.userID %}
-                <p>{{ user.username }} {{ review.publishing_date }}</p>
+                <p>{{ user.username }} | {{ review.publishing_date }}</p>
                 <br>
-                <p>{{ review.test }}</p>
+                <p>{{ review.text }}</p>
                 <br>
             {% endif %}
         {% endfor %}
