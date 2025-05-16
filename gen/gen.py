@@ -17,7 +17,7 @@ def search():
 
 @gen_bp.route('/movie', methods=['GET', 'POST'])
 @login_required
-def movie():
+def book():
     if request.method == "POST":
         global book
         book = Book.query.filter(Book.title == result).first() 

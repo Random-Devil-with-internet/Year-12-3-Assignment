@@ -16,7 +16,8 @@
     {% if book.id == review.bookID %}
         {% for user in users %}
             {% if user.id == review.userID %}
-                <h2>{{ user.title }}<h2>
+                <br>
+                <h2>{{ review.title }}</h2>
                 <br>
                 <p>{{ user.username }} | {{ review.publishing_date }}</p>
                 <br>
