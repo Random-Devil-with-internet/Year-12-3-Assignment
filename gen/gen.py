@@ -15,7 +15,7 @@ def search():
         return render_template("/gen/search.html", result=result)
     return render_template("/gen/search.html")
 
-@gen_bp.route('/movie', methods=['GET', 'POST'])
+@gen_bp.route('/book', methods=['GET', 'POST'])
 @login_required
 def book():
     if request.method == "POST":
