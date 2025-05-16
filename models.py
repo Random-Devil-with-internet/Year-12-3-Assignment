@@ -31,7 +31,8 @@ class Review(db.Model):
     bookID = db.Column(db.Integer, db.ForeignKey(Book.id), nullable=False)
     userID = db.Column(db.Integer, db.ForeignKey(User.id), nullable=False)
     publishing_date = db.Column(db.String(20), nullable=False)
-    text = db.Column(db.Text)
+    title = db.Column(db.String(80), nullable=False)
+    text = db.Column(db.Text, nullable=False)
     rating = db.Column(db.Integer)
     
     def __repr__(self):

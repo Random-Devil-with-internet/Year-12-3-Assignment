@@ -16,6 +16,8 @@
     {% if book.id == review.bookID %}
         {% for user in users %}
             {% if user.id == review.userID %}
+                <h2>{{ user.title }}<h2>
+                <br>
                 <p>{{ user.username }} | {{ review.publishing_date }}</p>
                 <br>
                 <p>{{ review.text }}</p>
@@ -25,7 +27,9 @@
     {% endif %}
 {% endfor %}
 <form method="POST" action="/review">
-    <textarea name="review"></textarea>
+    <input type="text" placeholder="Title" name="title" required>
+    <br>
+    <textarea name="review" required></textarea>
     <br>
     <button type="submit">Make a review</button>
 </form>

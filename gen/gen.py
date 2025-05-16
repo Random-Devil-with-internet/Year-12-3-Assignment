@@ -33,8 +33,9 @@ def movie():
 def review():
     if request.method == "POST":
         text = request.form["review"]
+        title = request.form["title"]
         x = datetime.datetime.now()
-        newReview = Review(bookID = book.id, userID = current_user.id, publishing_date = x.strftime("%x"), text = text)
+        newReview = Review(bookID = book.id, userID = current_user.id, publishing_date = x.strftime("%x"), title=title, text = text)
         db.session.add(newReview)
         db.session.commit()
         reviews = Review.query.all()
