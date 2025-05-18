@@ -1,7 +1,17 @@
-from flask import Blueprint, render_template, redirect, url_for, request, flash
+from flask import Blueprint, render_template, redirect, url_for, request, flash, Flask
 from flask_login import current_user, login_user, login_required, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
 from models import db, User
+import os
+
+app = Flask(__name__)
+UPLOAD_FOLDER = 'C:\\Users\\tlesk\\Desktop\\Programming\\Year 12 3 Assignment\\static'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 auth_bp = Blueprint('auth', __name__, url_prefix='/', template_folder="templates")
 
@@ -23,6 +33,20 @@ def login():
 @auth_bp.route('/signup', methods=['GET', "POST"])
 def signup():
     if request.method == "POST":
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(url_for('download_file', name=filename))
+        
         hashedPass = generate_password_hash(request.form["password"])
         newUser = User(username = request.form["username"], password = hashedPass, email = request.form["email"], bio = "fghf", profile_picture = "hhkjh")
         db.session.add(newUser)
