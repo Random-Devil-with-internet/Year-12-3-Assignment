@@ -33,18 +33,18 @@ def login():
 @auth_bp.route('/signup', methods=['GET', "POST"])
 def signup():
     if request.method == "POST":
-        if 'file' not in request.files:
-            flash('No file part')
+        if 'image' not in request.files:
+            flash('No image')
             return redirect(request.url)
-        file = request.files['file']
+        image = request.files['image']
 
-        if file.filename == '':
-            flash('No selected file')
+        if image.filename == '':
+            flash('No selected image')
             return redirect(request.url)
         
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        if image and allowed_file(image.filename):
+            filename = secure_filename(image.filename)
+            image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return redirect(url_for('download_file', name=filename))
         
         hashedPass = generate_password_hash(request.form["password"])
