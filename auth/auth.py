@@ -6,7 +6,8 @@ from models import db, User
 import os
 
 app = Flask(__name__)
-UPLOAD_FOLDER = 'C:\\Users\\tlesk\\Desktop\\Programming\\Year 12 3 Assignment\\static'
+UPLOAD_FOLDER = 'C://Users//tlesk//Desktop//Programming//Year 12 3 Assignment//static'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 def allowed_file(filename):
@@ -33,22 +34,13 @@ def login():
 @auth_bp.route('/signup', methods=['GET', "POST"])
 def signup():
     if request.method == "POST":
-        if 'image' not in request.files:
-            flash('No image')
-            return redirect(request.url)
         image = request.files['image']
-
-        if image.filename == '':
-            flash('No selected image')
-            return redirect(request.url)
-        
         if image and allowed_file(image.filename):
             filename = secure_filename(image.filename)
             image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('download_file', name=filename))
-        
+
         hashedPass = generate_password_hash(request.form["password"])
-        newUser = User(username = request.form["username"], password = hashedPass, email = request.form["email"], bio = "fghf", profile_picture = "hhkjh")
+        newUser = User(username = request.form["username"], password = hashedPass, email = request.form["email"], bio = "fghf", profile_picture = image.filename)
         db.session.add(newUser)
         db.session.commit()
         return redirect(url_for('auth.login'))
