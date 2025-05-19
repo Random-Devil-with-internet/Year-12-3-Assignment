@@ -19,8 +19,12 @@
             {% if user.id == review.userID %}
                 <br>
                 <h2>{{ review.title }}</h2>
+                <ul>
+                <li><p id="inline-block-child">By {{ user.username }}</p></li>
+                <li><img id="inline-block-child2" src="{{ url_for('static', filename=user.profile_picture) }}" width="50" height="40"></li>
+                <li><p id="inline-block-child">{{ review.publishing_date }}</p></li>
+                </ul>
                 <br>
-                <p>By {{ user.username }} | {{ review.publishing_date }}</p>
                 <br>
                 <p>{{ review.text }}</p>
                 <br>
