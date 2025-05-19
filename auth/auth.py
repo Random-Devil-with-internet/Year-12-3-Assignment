@@ -39,11 +39,11 @@ def signup():
             filename = secure_filename(image.filename)
             image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-        hashedPass = generate_password_hash(request.form["password"])
-        newUser = User(username = request.form["username"], password = hashedPass, email = request.form["email"], bio = "fghf", profile_picture = image.filename)
-        db.session.add(newUser)
-        db.session.commit()
-        return redirect(url_for('auth.login'))
+            hashedPass = generate_password_hash(request.form["password"])
+            newUser = User(username = request.form["username"], password = hashedPass, email = request.form["email"], bio = "fghf", profile_picture = image.filename)
+            db.session.add(newUser)
+            db.session.commit()
+            return redirect(url_for('auth.login'))
     return render_template("/auth/signup.html")
 
 @auth_bp.route('/logout')
