@@ -44,6 +44,9 @@ def signup():
             db.session.add(newUser)
             db.session.commit()
             return redirect(url_for('auth.login'))
+        else:
+            flash('File not an image')
+            return render_template("/auth/signup.html")
     return render_template("/auth/signup.html")
 
 @auth_bp.route('/logout')
