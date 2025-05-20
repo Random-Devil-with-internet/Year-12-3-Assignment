@@ -14,7 +14,10 @@
 <h3>Search results:</h3>
 <br>
 
-<form method="POST" action="/book">
-    <button type="submit">{{ result }}</button>
-</form>
+{% for result in results %}
+    <form method="POST" action="/book">
+        <button type="submit" value="{{ result.title }}" required>{{ result.title }}</button>
+    </form>
+    <br>
+{% endfor %}
 {% endblock %}

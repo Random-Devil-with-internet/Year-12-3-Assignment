@@ -1,7 +1,6 @@
-from flask import Blueprint, render_template, redirect, url_for, request, flash
-from flask_login import current_user, login_user, login_required, logout_user
+from flask import Blueprint, render_template, request
+from flask_login import current_user, login_required
 from models import db, Book, Review, User
-from sqlalchemy.sql.operators import ilike_op
 import datetime
 
 gen_bp = Blueprint('gen', __name__, url_prefix='/', template_folder="templates")
@@ -10,9 +9,8 @@ gen_bp = Blueprint('gen', __name__, url_prefix='/', template_folder="templates")
 @login_required
 def search():
     if request.method == "POST":
-        global result
-        result = db.session.scalar(db.select(Book.title).filter(ilike_op(Book.title, request.form["search"] + '%')))
-        return render_template("/gen/search.html", result=result)
+        results = Book.query.filter(Book.title.like(request.form["search"] + '%')).all()
+        return render_template("/gen/search.html", results=results)
     return render_template("/gen/search.html")
 
 @gen_bp.route('/book', methods=['GET', 'POST'])
@@ -20,7 +18,7 @@ def search():
 def book():
     if request.method == "POST":
         global book
-        book = Book.query.filter(Book.title == result).first() 
+        book = Book.query.filter(Book.title == request.form["review"]).first() 
         global reviews
         reviews = Review.query.all()
         global users
