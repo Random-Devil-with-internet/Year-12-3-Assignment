@@ -10,6 +10,7 @@ html {
   
 h2 {
     margin-bottom: 10px;
+    font-size: 30px;
 }
 
 ul {
@@ -52,6 +53,11 @@ li a {
 li a:hover {
     background-color: #c4c4c4;
 }
+
+li a:active {
+    background-color: rgb(75, 75, 75);
+    color: white;
+}
   
 input { 
     border-radius: 4px;
@@ -64,11 +70,66 @@ button {
     border-radius: 4px;
     padding: 3px;
     background-color: rgb(118, 157, 255);
+    font-size: 17px;
+}
+
+button:hover {
+    background-color: rgb(48, 90, 198);
+    color: white;
 }
 
 textarea {
     height: 100px;
     width: 300px;
+}
+
+#signupButton {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    border-radius: 4px;
+    border-color: black;
+    border-style: solid;
+    padding: 3px;
+    font-size: 16px;
+    background-color: rgb(164, 164, 164);
+}
+
+#signupButton:hover {
+    background-color: rgb(75, 75, 75);
+    color: white;
+}
+
+#signupButton:active {
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+#fileButton {
+    border-radius: 4px;
+    border-color: black;
+    border-style: solid;
+    background-color: rgb(164, 164, 164);
+    padding: 3px;
+    font-size: 16px;
+}
+
+#fileButton:hover {
+    background-color: rgb(75, 75, 75);
+    color: white;
+}
+
+#fileButton:active {
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+#fileButton2 {
+    margin-top: 10px;
+}
+
+#signupButton2 {
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
 
 #middle {

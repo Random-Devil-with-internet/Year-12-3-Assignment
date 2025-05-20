@@ -11,7 +11,10 @@
     <br>
     <input type="text" placeholder="Email" name="email" required>
     <br>
-    <input type="file" name="image" required>
+    <div id="fileButton2">
+        <label for="image" id="fileButton">Image for profile picture</label>
+        <input style="display:none;" type="file" id="image" accept="image/*" name="image" required>
+    </div>
     <br>
     <button type="submit">Submit</button>
 </form>
