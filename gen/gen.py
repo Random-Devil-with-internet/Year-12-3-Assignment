@@ -9,7 +9,8 @@ gen_bp = Blueprint('gen', __name__, url_prefix='/', template_folder="templates")
 @login_required
 def search():
     if request.method == "POST":
-        results = Book.query.filter(Book.title.like(request.form["search"] + '%')).all()
+        results =  Book.query.filter(Book.title.like(request.form["search"] + '%')).all()
+        results = results + Book.query.filter(Book.title.like('% ' + request.form["search"] + '%')).all()
         return render_template("/gen/search.html", results=results)
     return render_template("/gen/search.html")
 
@@ -18,7 +19,7 @@ def search():
 def book():
     if request.method == "POST":
         global book
-        book = Book.query.filter(Book.title == request.form["review"]).first() 
+        book = Book.query.filter(Book.title == request.form["book"]).first() 
         global reviews
         reviews = Review.query.all()
         global users

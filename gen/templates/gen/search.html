@@ -11,13 +11,13 @@
 </form>
 
 <br>
-<h3>Search results:</h3>
-<br>
+<h2>Search results:</h2>
 
 {% for result in results %}
-    <form method="POST" action="/book">
-        <button type="submit" value="{{ result.title }}" required>{{ result.title }}</button>
-    </form>
     <br>
+    <form method="POST" action="/book">
+        <input type="hidden" value="{{ result.title }}" name="book" required>
+        <button type="submit">{{ result.title }}</button>
+    </form>
 {% endfor %}
 {% endblock %}
