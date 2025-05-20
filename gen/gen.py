@@ -9,8 +9,9 @@ gen_bp = Blueprint('gen', __name__, url_prefix='/', template_folder="templates")
 @login_required
 def search():
     if request.method == "POST":
-        results =  Book.query.filter(Book.title.like(request.form["search"] + '%')).all()
+        results = Book.query.filter(Book.title.like(request.form["search"] + '%')).all() 
         results = results + Book.query.filter(Book.title.like('% ' + request.form["search"] + '%')).all()
+        results = list(dict.fromkeys(results))
         return render_template("/gen/search.html", results=results)
     return render_template("/gen/search.html")
 
