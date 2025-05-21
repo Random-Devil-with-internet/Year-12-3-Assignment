@@ -13,8 +13,9 @@
     <br>
     <div id="fileButton2">
         <label for="image" id="fileButton">Image for profile picture</label>
-        <input style="display:none;" type="file" id="image" accept="image/*" name="image" required>
+        <input onchange="loadFile(event)" style="display:none;" type="file" id="image" accept="image/*" name="image" required>
     </div>
+    <img id="preview"/>
     <br>
     <button type="submit">Submit</button>
 </form>
