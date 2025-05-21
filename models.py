@@ -21,7 +21,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(128), nullable=False)
     bio = db.Column(db.Text)
-    profile_picture = db.Column(db.String(200))
+    profile_picture = db.Column(db.String(200), nullable=False)
     
     def __repr__(self):
         return f"<User {self.id} - {self.username}>"    
@@ -33,7 +33,7 @@ class Review(db.Model):
     publishing_date = db.Column(db.String(20), nullable=False)
     title = db.Column(db.String(80), nullable=False)
     text = db.Column(db.Text, nullable=False)
-    rating = db.Column(db.Integer)
+    rating = db.Column(db.Integer, nullable=False)
     
     def __repr__(self):
         return f"<User {self.id} - {self.title}>"

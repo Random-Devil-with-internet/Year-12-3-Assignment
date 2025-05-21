@@ -34,8 +34,9 @@ def review():
     if request.method == "POST":
         text = request.form["review"]
         title = request.form["title"]
+        rating = request.form["rating"]
         x = datetime.datetime.now()
-        newReview = Review(bookID = book.id, userID = current_user.id, publishing_date = x.strftime("%x"), title=title, text = text)
+        newReview = Review(bookID = book.id, userID = current_user.id, publishing_date = x.strftime("%x"), title = title, text = text, rating = rating)
         db.session.add(newReview)
         db.session.commit()
         reviews = Review.query.all()

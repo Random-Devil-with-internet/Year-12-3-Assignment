@@ -8,7 +8,7 @@ from gen.gen import gen_bp
 folderPath = os.path.dirname(os.path.abspath(__file__))
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '75639702209fe37afc6a854d10d00363'
+app.config['SECRET_KEY'] = '7563o702209fe37afc6a854d10d00363'
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + folderPath + "/reviews.db"
 
 db.init_app(app)
