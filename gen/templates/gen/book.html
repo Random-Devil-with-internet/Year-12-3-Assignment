@@ -23,9 +23,25 @@
                 <li><p id="inline-block-child">By {{ user.username }}</p></li>
                 <li><img id="inline-block-child2" src="{{ url_for('static', filename=user.profile_picture) }}" width="50" height="40"></li>
                 <li><p id="inline-block-child">{{ review.publishing_date }}</p></li>
-                {% for i in range(0, review.rating|int|round(1)) %}
+                {% for i in range(0, review.rating|int) %}
                     <svg width="23" height="25">
-                        <polygon points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
+                        <polygon id="yellowStar" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
+                    </svg>
+                {%endfor%}
+                {% if review.rating|float % 1 != 0 %}
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="23" height="25">
+                        <defs>
+                        <linearGradient id="grad">
+                            <stop offset="50%" stop-color="#fbff00"/>
+                            <stop offset="50%" stop-color="#989898"/>
+                        </linearGradient>
+                        </defs>
+                        <polygon fill="url(#grad)" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
+                    </svg>
+                {% endif %}
+                {% for i in range(0, 4 - review.rating|int) %}
+                    <svg width="23" height="25">
+                        <polygon id="greyStar" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
                     </svg>
                 {%endfor%}
                 </ul>

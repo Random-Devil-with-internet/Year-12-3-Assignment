@@ -14,7 +14,7 @@
             {% if current_user.is_authenticated %}
                 <li><a href="{{ url_for('gen.search') }}">Home</a></li>
                 <li><p>{{ current_user.username }}</p></li>
-                <li><img src="{{ url_for('static', filename=current_user.profile_picture) }}" width="50" height="40"></li>
+                <li><img id="profile_picture" src="{{ url_for('static', filename=current_user.profile_picture) }}" width="50" height="40"></li>
                 <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
             {% else %}
                 <li><a href="{{ url_for('auth.login') }}">Login</a></li>

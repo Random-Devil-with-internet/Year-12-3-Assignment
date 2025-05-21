@@ -83,6 +83,19 @@ textarea {
     width: 300px;
 }
 
+svg {
+    margin: 0px;
+    padding-top: 7px;
+}
+
+#yellowStar {
+    fill:#fbff00;
+}
+
+#greyStar {
+    fill:#989898;
+}
+
 #signupButton {
     text-decoration: none;
     color: rgb(0, 0, 0);
@@ -145,6 +158,11 @@ textarea {
 #inline-block-child2 {
     margin-right: 5px;
     display: inline-block;
+    object-fit: cover;
+}
+
+#profile_picture {
+    object-fit: cover;
 }
 
 #blurb {
@@ -171,4 +189,47 @@ textarea {
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     padding: 10px 10px 10px 10px;
+}
+
+.rating {
+  --size: 25px;
+  --mask: conic-gradient(from -18deg at 61% 34.5%, #0000 108deg, #fbff00 0) 0 / var(--size),
+      conic-gradient(from 270deg at 39% 34.5%, #0000 108deg, #fbff00 0) 0 / var(--size),
+      conic-gradient(from 54deg at 68% 56%, #0000 108deg, #fbff00 0) 0 / var(--size),
+      conic-gradient(from 198deg at 32% 56%, #0000 108deg, #fbff00 0) 0 / var(--size),
+      conic-gradient(from 126deg at 50% 69%, #0000 108deg, #fbff00 0) 0 / var(--size);
+  --bg: linear-gradient(90deg, #fbff00 calc(var(--size) * var(--val)), #989898 0);
+  margin-bottom: 0px;
+  height: var(--size);
+  width: calc(var(--size) * 5);
+  border: 0; /* Firefox adds a default border to ranges */
+  -webkit-appearance: none;
+  appearance: none;
+  
+  /* Chrome and Safari */
+  &::-webkit-slider-runnable-track {
+    height: 100%;
+    mask: var(--mask);
+    mask-composite: intersect;
+    background: var(--bg);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  &::-webkit-slider-thumb {
+    opacity: 0;
+  }
+  
+  /* Firefox */
+  &::-moz-range-track {
+    height: 100%;
+    mask: var(--mask);
+    mask-composite: intersect;
+    background: var(--bg);
+    print-color-adjust: exact;
+  }
+  
+  &::-moz-range-thumb {
+    opacity: 0;
+  }
 }
