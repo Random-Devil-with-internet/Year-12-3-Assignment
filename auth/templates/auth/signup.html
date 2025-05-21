@@ -12,10 +12,10 @@
     <input type="text" placeholder="Email" name="email" required>
     <br>
     <div id="fileButton2">
-        <label for="image" id="fileButton">Image for profile picture</label>
-        <input onchange="loadFile(event)" style="display:none;" type="file" id="image" accept="image/*" name="image" required>
+        <label for="imagePicker" id="fileButton">Image for profile picture</label>
+        <input onchange="loadFile(event)" type="file" id="imagePicker" accept="image/*" name="imagePicker" required>
+        <img id="preview" width="50" height="40"/>
     </div>
-    <img id="preview"/>
     <br>
     <button type="submit">Submit</button>
 </form>
