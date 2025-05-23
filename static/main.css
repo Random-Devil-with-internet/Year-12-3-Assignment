@@ -43,6 +43,7 @@ li p {
 }
 
 li a {
+    cursor: pointer;
     display: block;
     color: rgb(0, 0, 0);
     text-align: center;
@@ -67,6 +68,7 @@ input {
 }
 
 button {
+    cursor: pointer;
     border-radius: 4px;
     padding: 3px;
     background-color: rgb(118, 157, 255);
@@ -106,6 +108,7 @@ svg {
 }
 
 #signupButton {
+    cursor: pointer;
     text-decoration: none;
     color: rgb(0, 0, 0);
     border-radius: 4px;
@@ -127,7 +130,7 @@ svg {
 }
 
 #fileButton {
-    /*display: inline-block;*/
+    cursor: pointer;
     border-radius: 4px;
     border-color: black;
     border-style: solid;
@@ -148,11 +151,13 @@ svg {
 
 #fileButton2 {
     margin: 0px;
+    cursor: pointer;
 }
 
 #signupButton2 {
     margin-top: 15px;
     margin-bottom: 5px;
+    cursor: pointer;
 }
 
 #middle {
@@ -202,6 +207,7 @@ svg {
 }
 
 .rating {
+    cursor: pointer;
   --size: 25px;
   --mask: conic-gradient(from -18deg at 61% 34.5%, #0000 108deg, #fbff00 0) 0 / var(--size),
       conic-gradient(from 270deg at 39% 34.5%, #0000 108deg, #fbff00 0) 0 / var(--size),
