@@ -17,12 +17,6 @@
     {% if book.id == review.bookID %}
         {% for user in users %}
             {% if user.id == review.userID %}
-                {% for like in likes %}
-                    {% if review.id == like.reviewID %}
-                        likeCount = likeCount + like.like|int
-                        dislikeCount = dislikeCount + like.dislike|int
-                    {% endif %}
-                {% endfor %}
                 <br>
                 <h2>{{ review.title }}</h2>
                 <ul>
@@ -55,14 +49,22 @@
                 <br>
                 <p>{{ review.text }}</p>
                 <br>
-                <form method="POST" action="/like">
-                    <input type="hidden" name="reviewID" value="{{ review.id }}">
-                    <button type="submit" id="like">👍{{ likeCount }}</button>
-                </form>
-                <form method="POST" action="/dislike">
-                    <input type="hidden" name="reviewID" value="{{ review.id }}">
-                    <button type="submit">👎{{ dislikeCount }}</button>
-                </form>
+                {% for like in likes %}
+                    {% if review.id == like.reviewID %}
+                        {% with likeCount = likeCount + like.like|int %}
+                            <form method="POST" action="/like">
+                                <input type="hidden" name="reviewID" value="{{ review.id }}">
+                                <button type="submit" id="like">👍{{ likeCount }}</button>
+                            </form>
+                        {% endwith %}
+                        {% with dislikeCount = dislikeCount + like.dislike|int %}
+                            <form method="POST" action="/dislike">
+                                <input type="hidden" name="reviewID" value="{{ review.id }}">
+                                <button type="submit">👎{{ dislikeCount }}</button>
+                            </form>
+                        {% endwith %}
+                    {% endif %}
+                {% endfor %}
             {% endif %}
         {% endfor %}
     {% endif %}

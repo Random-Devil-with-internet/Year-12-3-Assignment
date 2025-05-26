@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request
 from flask_login import current_user, login_required
 from models import db, Book, Review, User, Like
+from sqlalchemy import and_
 import datetime
 
 gen_bp = Blueprint('gen', __name__, url_prefix='/', template_folder="templates")
@@ -50,20 +51,20 @@ def review():
 @login_required
 def like():
     if request.method == "POST":
-        if Like.query.filter(Like.userID == current_user.id and Like.reviewID == request.form["reviewID"]).first() == None:
+        if Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form["reviewID"])).first() == None:
             newLike = Like(reviewID = request.form["reviewID"], userID = current_user.id, like = 1, dislike = 0)
             db.session.add(newLike)
             db.session.commit()
             return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
-    return render_template("/gen/book.html")
+    return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
 
 @gen_bp.route('/dislike', methods=['GET', 'POST'])
 @login_required
 def dislike():
     if request.method == "POST":
-        if Like.query.filter(Like.userID == current_user.id and Like.reviewID == request.form["reviewID"]).first() == None:
+        if Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form["reviewID"])).first() == None:
             newDislike= Like(reviewID = request.form["reviewID"], userID = current_user.id, like = 0, dislike = 1)
             db.session.add(newDislike)
             db.session.commit()
             return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
-    return render_template("/gen/book.html")
+    return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
