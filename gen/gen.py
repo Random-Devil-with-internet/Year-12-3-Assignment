@@ -25,7 +25,9 @@ def book():
         reviews = Review.query.all()
         global users
         users = User.query.all()
-        return render_template("/gen/book.html", users=users, reviews=reviews, book=book)
+        global likes
+        likes = User.query.all()
+        return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
     return render_template("/gen/search.html")
 
 @gen_bp.route('/review', methods=['GET', 'POST'])
@@ -41,22 +43,27 @@ def review():
         db.session.commit()
         reviews = Review.query.all()
         users = User.query.all()
-        return render_template("/gen/book.html", users=users, reviews=reviews, book=book)
+        return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
     return render_template("/gen/book.html")
 
 @gen_bp.route('/like', methods=['GET', 'POST'])
 @login_required
 def like():
     if request.method == "POST":
-        if Like.query.filter(Like.userID == current_user and Like.reviewID == request.form["reviewID"]).first() == None:
-
-
+        if Like.query.filter(Like.userID == current_user.id and Like.reviewID == request.form["reviewID"]).first() == None:
+            newLike = Like(reviewID = request.form["reviewID"], userID = current_user.id, like = 1, dislike = 0)
+            db.session.add(newLike)
+            db.session.commit()
+            return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
     return render_template("/gen/book.html")
 
 @gen_bp.route('/dislike', methods=['GET', 'POST'])
 @login_required
 def dislike():
     if request.method == "POST":
-        if Like.query.filter(Like.userID == current_user and Like.reviewID == request.form["reviewID"]).first() == None:
-
+        if Like.query.filter(Like.userID == current_user.id and Like.reviewID == request.form["reviewID"]).first() == None:
+            newDislike= Like(reviewID = request.form["reviewID"], userID = current_user.id, like = 0, dislike = 1)
+            db.session.add(newDislike)
+            db.session.commit()
+            return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
     return render_template("/gen/book.html")
