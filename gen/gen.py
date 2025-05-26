@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request
 from flask_login import current_user, login_required
-from models import db, Book, Review, User
+from models import db, Book, Review, User, Like
 import datetime
 
 gen_bp = Blueprint('gen', __name__, url_prefix='/', template_folder="templates")
@@ -42,4 +42,21 @@ def review():
         reviews = Review.query.all()
         users = User.query.all()
         return render_template("/gen/book.html", users=users, reviews=reviews, book=book)
+    return render_template("/gen/book.html")
+
+@gen_bp.route('/like', methods=['GET', 'POST'])
+@login_required
+def like():
+    if request.method == "POST":
+        if Like.query.filter(Like.userID == current_user and Like.reviewID == request.form["reviewID"]).first() == None:
+
+
+    return render_template("/gen/book.html")
+
+@gen_bp.route('/dislike', methods=['GET', 'POST'])
+@login_required
+def dislike():
+    if request.method == "POST":
+        if Like.query.filter(Like.userID == current_user and Like.reviewID == request.form["reviewID"]).first() == None:
+
     return render_template("/gen/book.html")

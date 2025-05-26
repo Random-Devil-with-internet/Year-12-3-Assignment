@@ -95,6 +95,10 @@ svg {
    object-fit: cover; 
 }
 
+#like {
+    float: left;
+}
+
 #imagePicker {
     display: none;
 }

@@ -49,6 +49,14 @@
                 <br>
                 <p>{{ review.text }}</p>
                 <br>
+                <form method="POST" action="/like">
+                    <input type="hidden" name="reviewID" value="{{ review.id }}">
+                    <button type="submit" id="like">👍</button>
+                </form>
+                <form method="POST" action="/dislike">
+                    <input type="hidden" name="reviewID" value="{{ review.id }}">
+                    <button type="submit">👎</button>
+                </form>
             {% endif %}
         {% endfor %}
     {% endif %}

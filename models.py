@@ -37,3 +37,13 @@ class Review(db.Model):
     
     def __repr__(self):
         return f"<User {self.id} - {self.title}>"
+    
+class Like(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    reviewID = db.Column(db.Integer, db.ForeignKey(Review.id), nullable=False)
+    userID = db.Column(db.Integer, db.ForeignKey(User.id), nullable=False)
+    like = db.Column(db.Integer, nullable=False)
+    dislike = db.Column(db.Integer, nullable=False)
+    
+    def __repr__(self):
+        return f"<User {self.id} - {self.reviewID}>"
