@@ -27,7 +27,7 @@ def book():
         global users
         users = User.query.all()
         global likes
-        likes = User.query.all()
+        likes = Like.query.all()
         return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
     return render_template("/gen/search.html")
 
@@ -55,6 +55,7 @@ def like():
             newLike = Like(reviewID = request.form["reviewID"], userID = current_user.id, like = 1, dislike = 0)
             db.session.add(newLike)
             db.session.commit()
+            likes = Like.query.all()
             return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
     return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
 
@@ -66,5 +67,6 @@ def dislike():
             newDislike= Like(reviewID = request.form["reviewID"], userID = current_user.id, like = 0, dislike = 1)
             db.session.add(newDislike)
             db.session.commit()
+            likes = Like.query.all()
             return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
     return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)

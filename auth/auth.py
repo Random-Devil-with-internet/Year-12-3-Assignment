@@ -34,7 +34,7 @@ def login():
 @auth_bp.route('/signup', methods=['GET', "POST"])
 def signup():
     if request.method == "POST":
-        image = request.files['image']
+        image = request.files['imagePicker']
         if image and allowed_file(image.filename):
             filename = secure_filename(image.filename)
             image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))

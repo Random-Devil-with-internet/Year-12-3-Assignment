@@ -49,22 +49,30 @@
                 <br>
                 <p>{{ review.text }}</p>
                 <br>
-                {% for like in likes %}
-                    {% if review.id == like.reviewID %}
-                        {% with likeCount = likeCount + like.like|int %}
-                            <form method="POST" action="/like">
-                                <input type="hidden" name="reviewID" value="{{ review.id }}">
-                                <button type="submit" id="like">👍{{ likeCount }}</button>
-                            </form>
-                        {% endwith %}
-                        {% with dislikeCount = dislikeCount + like.dislike|int %}
-                            <form method="POST" action="/dislike">
-                                <input type="hidden" name="reviewID" value="{{ review.id }}">
-                                <button type="submit">👎{{ dislikeCount }}</button>
-                            </form>
-                        {% endwith %}
-                    {% endif %}
-                {% endfor %}
+                {% set likeCount = 0 %}
+                {% set ns = namespace(likeCount=likeCount) %}
+                    {% for like in likes %}
+                        {% if review.id == like.reviewID %}
+                            {% set ns.likeCount = ns.likeCount|int + like.like|int %}
+                        {% endif %}
+                    {% endfor %}
+                <p>{{ ns.likeCount }}</p>
+                {% set dislikeCount = 0 %}
+                {% set ns = namespace(dislikeCount=dislikeCount) %}
+                    {% for like in likes %}
+                        {% if review.id == like.reviewID %}
+                            {% set ns.dislikeCount = ns.dislikeCount|int + like.dislike|int %}
+                        {% endif %}
+                    {% endfor %}
+                <p>{{ ns.dislikeCount }}</p>
+                <form method="POST" action="/like">
+                    <input type="hidden" name="reviewID" value="{{ review.id }}">
+                    <button type="submit" id="like">👍</button>
+                </form>
+                <form method="POST" action="/dislike">
+                    <input type="hidden" name="reviewID" value="{{ review.id }}">
+                    <button type="submit">👎</button>
+                </form>
             {% endif %}
         {% endfor %}
     {% endif %}
