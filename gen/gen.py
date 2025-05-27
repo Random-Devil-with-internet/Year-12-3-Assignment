@@ -51,9 +51,14 @@ def review():
 @login_required
 def like():
     if request.method == "POST":
-        if Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form["reviewID"])).first() == None:
+        if Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form["reviewID"], Like.like == 1, Like.dislike == 0)).first() == None:
             newLike = Like(reviewID = request.form["reviewID"], userID = current_user.id, like = 1, dislike = 0)
             db.session.add(newLike)
+            db.session.commit()
+            likes = Like.query.all()
+            return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
+        else:
+            Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form["reviewID"], Like.like == 1, Like.dislike == 0)).delete()
             db.session.commit()
             likes = Like.query.all()
             return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
@@ -63,9 +68,14 @@ def like():
 @login_required
 def dislike():
     if request.method == "POST":
-        if Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form["reviewID"])).first() == None:
+        if Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form["reviewID"], Like.like == 0, Like.dislike == 1)).first() == None:
             newDislike= Like(reviewID = request.form["reviewID"], userID = current_user.id, like = 0, dislike = 1)
             db.session.add(newDislike)
+            db.session.commit()
+            likes = Like.query.all()
+            return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
+        else:
+            Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form["reviewID"], Like.like == 0, Like.dislike == 1)).delete()
             db.session.commit()
             likes = Like.query.all()
             return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
