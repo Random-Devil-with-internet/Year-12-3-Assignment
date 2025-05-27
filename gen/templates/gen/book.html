@@ -56,7 +56,10 @@
                             {% set ns.likeCount = ns.likeCount|int + like.like|int %}
                         {% endif %}
                     {% endfor %}
-                <p>{{ ns.likeCount }}</p>
+                <form method="POST" action="/like">
+                    <input type="hidden" name="reviewID" value="{{ review.id }}">
+                    <button type="submit" id="like">👍{{ ns.likeCount }}</button>
+                </form>
                 {% set dislikeCount = 0 %}
                 {% set ns = namespace(dislikeCount=dislikeCount) %}
                     {% for like in likes %}
@@ -64,14 +67,9 @@
                             {% set ns.dislikeCount = ns.dislikeCount|int + like.dislike|int %}
                         {% endif %}
                     {% endfor %}
-                <p>{{ ns.dislikeCount }}</p>
-                <form method="POST" action="/like">
-                    <input type="hidden" name="reviewID" value="{{ review.id }}">
-                    <button type="submit" id="like">👍</button>
-                </form>
                 <form method="POST" action="/dislike">
                     <input type="hidden" name="reviewID" value="{{ review.id }}">
-                    <button type="submit">👎</button>
+                    <button type="submit">👎{{ ns.dislikeCount }}</button>
                 </form>
             {% endif %}
         {% endfor %}
