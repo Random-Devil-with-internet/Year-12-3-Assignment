@@ -34,18 +34,28 @@ def login():
 @auth_bp.route('/signup', methods=['GET', "POST"])
 def signup():
     if request.method == "POST":
-        image = request.files['imagePicker']
-        if image and allowed_file(image.filename):
-            filename = secure_filename(image.filename)
-            image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        u = User.query.filter(User.username == request.form["username"]).first()
+        e = User.query.filter(User.email == request.form["email"]).first()
+        if u == None:
+            if e == None:
+                image = request.files['imagePicker']
+                if image and allowed_file(image.filename):
+                    filename = secure_filename(image.filename)
+                    image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-            hashedPass = generate_password_hash(request.form["password"])
-            newUser = User(username = request.form["username"], password = hashedPass, email = request.form["email"], bio = "fghf", profile_picture = image.filename)
-            db.session.add(newUser)
-            db.session.commit()
-            return redirect(url_for('auth.login'))
+                    hashedPass = generate_password_hash(request.form["password"])
+                    newUser = User(username = request.form["username"], password = hashedPass, email = request.form["email"], bio = request.form["bio"], profile_picture = image.filename)
+                    db.session.add(newUser)
+                    db.session.commit()
+                    return redirect(url_for('auth.login'))
+                else:
+                    flash('File not an image')
+                    return render_template("/auth/signup.html")
+            else:
+                flash('No duplicate emails allowed')
+                return render_template("/auth/signup.html")
         else:
-            flash('File not an image')
+            flash('No duplicate usernames allowed')
             return render_template("/auth/signup.html")
     return render_template("/auth/signup.html")
 
