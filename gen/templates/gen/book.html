@@ -12,6 +12,8 @@
     <img id="inline-block-child" src="{{ book.cover_link }}" height="400" width="267">
 </div>
 <h2>Reviews</h2>
+{% set count = 0 %}
+{% set nsg = namespace(count=count) %}
 <hr>
 {% for review in reviews %}
     {% if book.id == review.bookID %}
@@ -56,10 +58,29 @@
                             {% set ns.likeCount = ns.likeCount|int + like.like|int %}
                         {% endif %}
                     {% endfor %}
-                <form method="POST" action="/like">
-                    <input type="hidden" name="reviewID" value="{{ review.id }}">
-                    <button type="submit" id="like">👍{{ ns.likeCount }}</button>
+                <form method="POST" action="/like" id="like-form">
+                    <input type="hidden" name="reviewID" id="reviewID" value="{{ review.id }}">
+                    <button type="submit" id="like{{ nsg.count }}">👍{{ ns.likeCount }}</button>
                 </form>
+                <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+                <script type="text/javascript">
+                    $(document).on('submit','#like-form',function(e)
+                                {
+                    e.preventDefault();
+                    $.ajax({
+                        type:'POST',
+                        url:'/like',
+                        data:{
+                        reviewID:$("#reviewID").val()
+                        },
+                        success:function()
+                        {
+                            let count = document.getElementById("like{{ nsg.count }}").textContent.replace("👍", "");
+                            document.getElementById("like{{ nsg.count }}").innerHTML = "👍" + (Number(count) + 1);
+                        }
+                        })
+                    });
+                </script>
                 {% set dislikeCount = 0 %}
                 {% set ns = namespace(dislikeCount=dislikeCount) %}
                     {% for like in likes %}
@@ -67,13 +88,33 @@
                             {% set ns.dislikeCount = ns.dislikeCount|int + like.dislike|int %}
                         {% endif %}
                     {% endfor %}
-                <form method="POST" action="/dislike">
+                <form method="POST" action="/dislike" id="dislike-form">
                     <input type="hidden" name="reviewID" value="{{ review.id }}">
-                    <button type="submit">👎{{ ns.dislikeCount }}</button>
+                    <button type="submit" id="dislike{{ nsg.count }}">👎{{ ns.dislikeCount }}</button>
                 </form>
+                <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+                <script type="text/javascript">
+                    $(document).on('submit','#dislike-form',function(e)
+                                {
+                    e.preventDefault();
+                    $.ajax({
+                        type:'POST',
+                        url:'/dislike',
+                        data:{
+                        reviewID:$("#reviewID").val()
+                        },
+                        success:function()
+                        {
+                            let count = document.getElementById("dislike{{ nsg.count }}").textContent.replace("👎", "");
+                            document.getElementById("dislike{{ nsg.count }}").innerHTML = "👎" + (Number(count) + 1);
+                        }
+                        })
+                    });
+                </script>
             {% endif %}
         {% endfor %}
     {% endif %}
+    {% set nsg.count = nsg.count|int + 1 %}
 {% endfor %}
 <form method="POST" action="/review">
     <input type="text" placeholder="Title" name="title" required>

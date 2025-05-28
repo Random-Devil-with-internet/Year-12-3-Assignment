@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import current_user, login_required
 from models import db, Book, Review, User, Like
 from sqlalchemy import and_
@@ -19,17 +19,20 @@ def search():
 @gen_bp.route('/book', methods=['GET', 'POST'])
 @login_required
 def book():
+    global book
+    global reviews
+    global users
+    global likes
     if request.method == "POST":
-        global book
         book = Book.query.filter(Book.title == request.form["book"]).first() 
-        global reviews
         reviews = Review.query.all()
-        global users
         users = User.query.all()
-        global likes
         likes = Like.query.all()
-        return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
-    return render_template("/gen/search.html")
+        return redirect(url_for('gen.book'))
+    reviews = Review.query.all()
+    users = User.query.all()
+    likes = Like.query.all()
+    return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
 
 @gen_bp.route('/review', methods=['GET', 'POST'])
 @login_required
@@ -44,39 +47,39 @@ def review():
         db.session.commit()
         reviews = Review.query.all()
         users = User.query.all()
-        return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
-    return render_template("/gen/book.html")
+        return redirect(url_for('gen.book'))
+    return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
 
 @gen_bp.route('/like', methods=['GET', 'POST'])
 @login_required
 def like():
     if request.method == "POST":
-        if Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form["reviewID"], Like.like == 1, Like.dislike == 0)).first() == None and Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form["reviewID"], Like.like == 0, Like.dislike == 1)).first() == None:
-            newLike = Like(reviewID = request.form["reviewID"], userID = current_user.id, like = 1, dislike = 0)
+        if Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form.get("reviewID"), Like.like == 1, Like.dislike == 0)).first() == None and Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form["reviewID"], Like.like == 0, Like.dislike == 1)).first() == None:
+            newLike = Like(reviewID = request.form.get("reviewID"), userID = current_user.id, like = 1, dislike = 0)
             db.session.add(newLike)
             db.session.commit()
             likes = Like.query.all()
-            return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
+            return redirect(url_for('gen.book'))
         else:
-            Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form["reviewID"], Like.like == 1, Like.dislike == 0)).delete()
+            Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form.get("reviewID"), Like.like == 1, Like.dislike == 0)).delete()
             db.session.commit()
             likes = Like.query.all()
-            return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
+            return redirect(url_for('gen.book'))
     return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
 
 @gen_bp.route('/dislike', methods=['GET', 'POST'])
 @login_required
 def dislike():
     if request.method == "POST":
-        if Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form["reviewID"], Like.like == 1, Like.dislike == 0)).first() == None and Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form["reviewID"], Like.like == 0, Like.dislike == 1)).first() == None:
-            newDislike= Like(reviewID = request.form["reviewID"], userID = current_user.id, like = 0, dislike = 1)
+        if Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID ==  request.form.get("reviewID"), Like.like == 1, Like.dislike == 0)).first() == None and Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form["reviewID"], Like.like == 0, Like.dislike == 1)).first() == None:
+            newDislike= Like(reviewID = request.form.get("reviewID"), userID = current_user.id, like = 0, dislike = 1)
             db.session.add(newDislike)
             db.session.commit()
             likes = Like.query.all()
-            return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
+            return redirect(url_for('gen.book'))
         else:
-            Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form["reviewID"], Like.like == 0, Like.dislike == 1)).delete()
+            Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form.get("reviewID"), Like.like == 0, Like.dislike == 1)).delete()
             db.session.commit()
             likes = Like.query.all()
-            return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
+            return redirect(url_for('gen.book'))
     return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
