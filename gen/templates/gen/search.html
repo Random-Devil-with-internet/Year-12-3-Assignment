@@ -16,7 +16,7 @@
 {% for result in results %}
     <br>
     <form method="POST" action="/book">
-        <input type="hidden" value="{{ result.title }}" name="book" required>
+        <input type="hidden" value="{{ result.title }}" name="bookName"/>
         <button type="submit">{{ result.title }}</button>
     </form>
 {% endfor %}
