@@ -105,5 +105,6 @@ def dislike():
 @login_required
 def profile():
     if request.method == "POST":
-        print(request.form["user"])
-    return render_template("/gen/profile.html")
+        user = User.query.filter(User.username == request.form["user"]).first()
+        return render_template("/gen/profile.html", user=user)
+    return render_template("/gen/profile.html", user=user)
