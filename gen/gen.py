@@ -21,11 +21,11 @@ def search():
 def book():
     global book
     global reviews
-    global users
     global likes
+    global users
     if request.method == "POST":
-        print(request.form["bookName"])
         book = Book.query.filter(Book.title == request.form["bookName"]).first() 
+        users = User.query.all()
         reviews = Review.query.all()
         users = User.query.all()
         likes = Like.query.all()
@@ -62,7 +62,7 @@ def like():
             likes = Like.query.all()
             likeCount = 0
             for like in likes:
-                if review.id == like.reviewID:
+                if request.form["reviewID"] == like.reviewID:
                     likeCount = likeCount + int(like.like)
             return render_template("/gen/button.html", likeCount=likeCount)
         else:
@@ -71,7 +71,7 @@ def like():
             likes = Like.query.all()
             likeCount = 0
             for like in likes:
-                if review.id == like.reviewID:
+                if request.form["reviewID"] == like.reviewID:
                     likeCount = likeCount + int(like.like)
             return render_template("/gen/button.html", likeCount=likeCount)
     return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
@@ -85,16 +85,25 @@ def dislike():
             db.session.add(newDislike)
             db.session.commit()
             likes = Like.query.all()
+            likeCount = 0
             for like in likes:
-                if review.id == like.reviewID:
+                if request.form["reviewID"] == like.reviewID:
                     likeCount = likeCount + int(like.dislike)
             return render_template("/gen/button.html", likeCount=likeCount)
         else:
             Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form.get("reviewID"), Like.like == 0, Like.dislike == 1)).delete()
             db.session.commit()
             likes = Like.query.all()
+            likeCount = 0
             for like in likes:
-                if review.id == like.reviewID:
+                if request.form["reviewID"] == like.reviewID:
                     likeCount = likeCount + int(like.dislike)
             return render_template("/gen/button.html", likeCount=likeCount)
     return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
+
+@gen_bp.route('/profile', methods=['GET', 'POST'])
+@login_required
+def profile():
+    if request.method == "POST":
+        print(request.form["user"])
+    return render_template("/gen/profile.html")

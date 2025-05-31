@@ -15,7 +15,10 @@
             <li><h1>LitLounge</h1></li>
             {% if current_user.is_authenticated %}
                 <li><a href="{{ url_for('gen.search') }}">Home</a></li>
-                <li><p>{{ current_user.username }}</p></li>
+                <form method="POST" action="/profile">
+                    <input type="hidden" name="user" value="{{ current_user.username }}">
+                    <li><button type="subimt" id="profileButton">By {{ current_user.username }}</a></li>
+                </form>
                 <li><img id="profile_picture" src="{{ url_for('static', filename=current_user.profile_picture) }}" width="50" height="40"></li>
                 <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
             {% else %}
