@@ -1,8 +1,18 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, Flask
 from flask_login import current_user, login_required
 from models import db, Book, Review, User, Like
 from sqlalchemy import and_
-import datetime
+import datetime, os
+
+folderPath = os.path.dirname(os.path.abspath(__file__))
+app = Flask(__name__)
+UPLOAD_FOLDER = folderPath.replace('\\gen', '') + '\\static'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 gen_bp = Blueprint('gen', __name__, url_prefix='/', template_folder="templates")
 
@@ -108,3 +118,11 @@ def profile():
         user = User.query.filter(User.username == request.form["user"]).first()
         return render_template("/gen/profile.html", user=user)
     return render_template("/gen/profile.html", user=user)
+
+@gen_bp.route('/picture', methods=['GET', 'POST'])
+@login_required
+def picture():
+    if request.method == "POST":
+        user = User.query.filter(User.username == request.form["user"]).first()
+        return render_template("/por/profile.html", user=user)
+    return render_template("/por/profile.html", user=user)

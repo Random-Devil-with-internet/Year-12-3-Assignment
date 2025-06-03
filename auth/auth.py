@@ -5,8 +5,9 @@ from werkzeug.utils import secure_filename
 from models import db, User
 import os
 
+folderPath = os.path.dirname(os.path.abspath(__file__))
 app = Flask(__name__)
-UPLOAD_FOLDER = 'C://Users//tlesk//Desktop//Programming//Year 12 3 Assignment//static'
+UPLOAD_FOLDER = folderPath.replace('\\auth', '') + '\\static'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 

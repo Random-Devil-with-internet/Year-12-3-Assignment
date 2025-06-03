@@ -201,9 +201,21 @@ svg {
 }
 
 #profile_picture {
-    object-fit: cover;
+    width: 50px;
+    height: 40px;
+    background-size: cover;
     border: 2px solid rgb(69, 68, 68);
     border-radius: 5px;
+    padding-left: 0;
+}
+
+#profile_picture2 {
+    width: 100px;
+    height: 80px;
+    background-size: cover;
+    border: 2px solid rgb(69, 68, 68);
+    border-radius: 5px;
+    padding-left: 0;
 }
 
 #blurb {
