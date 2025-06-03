@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, Flask
+from flask import Blueprint, render_template, request, redirect, url_for, Flask, flash
 from flask_login import current_user, login_required
 from models import db, Book, Review, User, Like
 from werkzeug.utils import secure_filename
@@ -41,10 +41,7 @@ def book():
         users = User.query.all()
         likes = Like.query.all()
         return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
-    reviews = Review.query.all()
-    users = User.query.all()
-    likes = Like.query.all()
-    return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
+    return render_template("/gen/search.html")
 
 @gen_bp.route('/review', methods=['GET', 'POST'])
 @login_required
@@ -119,17 +116,16 @@ def profile():
         global user
         user = User.query.filter(User.username == request.form["user"]).first()
         return render_template("/gen/profile.html", user=user)
-    return render_template("/gen/profile.html", user=user)
+    return render_template("/gen/search.html")
 
 @gen_bp.route('/edit', methods=['GET', 'POST'])
 @login_required
 def edit():
     if request.method == "POST":
         if user.username == current_user.username:
-        
-        flash('File not an image')
-        return render_template("/auth/signup.html")
-
+            return render_template("/auth/signup.html")
+        flash('Not your account')
+        return render_template("/gen/profile.html", user=user)
     return render_template("/gen/profile.html", user=user)
 
 

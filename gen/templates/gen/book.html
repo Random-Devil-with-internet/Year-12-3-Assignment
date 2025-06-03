@@ -26,7 +26,11 @@
                     <input type="hidden" name="user" value="{{ user.username }}">
                     <li><button type="subimt" id="profileButton">By {{ user.username }}</a></li>
                 </form>
-                <li><img id="inline-block-child2" src="{{ url_for('static', filename=user.profile_picture) }}" width="50" height="40"></li>
+                <form method="POST" action="/profile">
+                    <input type="hidden" name="user" value="{{ user.username }}">
+                    {% set link = "static/" + user.profile_picture %}
+                    <li><input type="image" id="profile_picture" src="{{ link }}" alt="Submit"></li>
+                </form>
                 <li><p id="inline-block-child">{{ review.publishing_date }}</p></li>
                 {% for i in range(0, review.rating|int) %}
                     <svg width="23" height="25">
