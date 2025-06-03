@@ -4,10 +4,10 @@
 
 {% block content %}
 {% set link = "static/" + user.profile_picture %}
-    <form method="POST" action="/picture" enctype="multipart/form-data">
-        <input onchange="loadFile(event)" type="file" type="hidden" id="imagePicker" accept="image/*" name="imagePicker" required>
-        <input type="image" id="profile_picture2" src="{{ link }}" alt="Submit">
-    </form>
+    <img id="profile_picture2" src="{{ link }}">
     <h2>{{ user.username }}</h2>
     <p>{{ user.bio }}</p>
+    <form method="POST" action="/edit">
+        <button type="submit">Edit profile</button>
+    </form>
 {% endblock %}

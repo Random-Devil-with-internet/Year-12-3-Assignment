@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, request, redirect, url_for, Flask
 from flask_login import current_user, login_required
 from models import db, Book, Review, User, Like
-from sqlalchemy import and_
+from werkzeug.utils import secure_filename
+from sqlalchemy import and_, update
 import datetime, os
 
 folderPath = os.path.dirname(os.path.abspath(__file__))
@@ -115,14 +116,31 @@ def dislike():
 @login_required
 def profile():
     if request.method == "POST":
+        global user
         user = User.query.filter(User.username == request.form["user"]).first()
         return render_template("/gen/profile.html", user=user)
     return render_template("/gen/profile.html", user=user)
 
-@gen_bp.route('/picture', methods=['GET', 'POST'])
+@gen_bp.route('/edit', methods=['GET', 'POST'])
 @login_required
-def picture():
+def edit():
     if request.method == "POST":
-        user = User.query.filter(User.username == request.form["user"]).first()
+        if user.username == current_user.username:
+        
+        flash('File not an image')
+        return render_template("/auth/signup.html")
+
+    return render_template("/gen/profile.html", user=user)
+
+
+@gen_bp.route('/gfdz', methods=['GET', 'POST'])
+@login_required
+def efdit():
+    if request.method == "POST":
+        image = request.files['imagePicker']
+        if image and allowed_file(image.filename):
+            filename = secure_filename(image.filename)
+            image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            update(user).where(user.profile_picture == image.filename).values(name="user #image.filename")
         return render_template("/por/profile.html", user=user)
     return render_template("/por/profile.html", user=user)
