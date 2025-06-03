@@ -123,13 +123,13 @@ def profile():
 def edit():
     if request.method == "POST":
         if user.username == current_user.username:
-            return render_template("/auth/signup.html")
+            return render_template("/gen/edit.html", user=user)
         flash('Not your account')
         return render_template("/gen/profile.html", user=user)
     return render_template("/gen/profile.html", user=user)
 
 
-@gen_bp.route('/gfdz', methods=['GET', 'POST'])
+@gen_bp.route('/change', methods=['GET', 'POST'])
 @login_required
 def efdit():
     if request.method == "POST":
@@ -139,4 +139,4 @@ def efdit():
             image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             update(user).where(user.profile_picture == image.filename).values(name="user #image.filename")
         return render_template("/por/profile.html", user=user)
-    return render_template("/por/profile.html", user=user)
+    return render_template("/gen/profile.html", user=user)
