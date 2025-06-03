@@ -131,12 +131,21 @@ def edit():
 
 @gen_bp.route('/change', methods=['GET', 'POST'])
 @login_required
-def efdit():
+def change():
     if request.method == "POST":
-        image = request.files['imagePicker']
-        if image and allowed_file(image.filename):
-            filename = secure_filename(image.filename)
-            image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            update(user).where(user.profile_picture == image.filename).values(name="user #image.filename")
-        return render_template("/por/profile.html", user=user)
+        u = update(user)
+        u.values({"username": request.form["username"]})
+        u.where(user.username == request.form["username"])
+        u.values({"bio": request.form["bio"]})
+        u.where(user.bio == request.form["bio"])
+        #image = request.files['imagePicker']
+        #print("fkglksj")
+        #if image and allowed_file(image.filename):
+            #filename = secure_filename(image.filename)
+            #image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            #update(user).where(user.profile_picture == image.filename).values(name="user #image.filename")
+            #update(user).where(user.username == request.form["username"]).values(name='user #request.form["username"]')
+            #update(user).where(user.bio == request.form["bio"]).values(name='user #request.form["bio"]')
+            #return render_template("/gen/edit.html", user=user)
+        return render_template("/gen/edit.html", user=user)
     return render_template("/gen/profile.html", user=user)
