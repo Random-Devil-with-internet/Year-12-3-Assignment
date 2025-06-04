@@ -7,7 +7,9 @@
     <img id="profile_picture2" src="{{ link }}">
     <h2>{{ user.username }}</h2>
     <p id="bio">{{ user.bio }}</p>
-    <p>People who {{ user.username }} follows</p>
+    <br>
+    <p id="bio">People who {{ user.username }} follows</p>
+    <div id="con3">
     {% for follow in follows %}
         {% if follow.user1ID == user.id %}
             {% for u in users %}
@@ -21,9 +23,10 @@
             {% endfor %}
         {% endif %}
     {% endfor %}
+    </div>
     <form method="POST" action="/change">
         <input type="hidden" name="username" value="{{ user.username }}">
-        <button type="submit">Edit profile</button>
+        <button id="change" type="submit">Edit profile</button>
     </form>
     <form method="POST" action="/follow">
         <input type="hidden" name="id" value="{{ user.id }}">

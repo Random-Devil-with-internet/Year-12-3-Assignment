@@ -204,6 +204,10 @@ svg {
     object-fit: cover;
 }
 
+#change {
+    margin-bottom: 10px;
+}
+
 #profile_picture {
     width: 50px;
     height: 40px;
@@ -211,7 +215,8 @@ svg {
     border: 2px solid rgb(69, 68, 68);
     border-radius: 5px;
     padding-left: 0;
-    display: inline-block;
+    float: left;
+    margin-right: 5px;
 }
 
 #profile_picture2 {
@@ -247,6 +252,12 @@ svg {
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     padding: 10px 10px 10px 10px;
+}
+
+#con3 {
+    width: 700px;
+    display: inline-block;
+    margin-bottom: 2%;
 }
 
 .rating {
