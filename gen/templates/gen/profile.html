@@ -6,7 +6,7 @@
 {% set link = "static/" + user.profile_picture %}
     <img id="profile_picture2" src="{{ link }}">
     <h2>{{ user.username }}</h2>
-    <p>{{ user.bio }}</p>
+    <p id="bio">{{ user.bio }}</p>
     <form method="POST" action="/change">
         <input type="hidden" name="username" value="{{ user.username }}">
         <button type="submit">Edit profile</button>
