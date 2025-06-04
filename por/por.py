@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, Flask, flash
 from flask_login import current_user, login_required
-from models import db, User
+from models import db, User, Follow
 from werkzeug.utils import secure_filename
 import os
 
@@ -20,6 +20,8 @@ por_bp = Blueprint('por', __name__, url_prefix='/', template_folder="templates")
 @login_required
 def profile():
     if request.method == "POST":
+        global name
+        name = request.form["user"]
         user = User.query.filter(User.username == request.form["user"]).first()
         return render_template("/por/profile.html", user=user)
     return render_template("/gen/search.html")
@@ -27,8 +29,6 @@ def profile():
 @por_bp.route('/change', methods=['GET', 'POST'])
 @login_required
 def change():
-    global name
-    name = request.form["username"]
     user = User.query.filter(User.username == request.form["username"]).first()
     if request.method == "POST":
         if user.username == current_user.username:
@@ -52,3 +52,15 @@ def edit():
             return render_template("/por/profile.html", user=user)
         return render_template("/por/profile.html", user=user)
     return render_template("/por/profile.html", user=user)
+
+@por_bp.route('/follow', methods=['GET', 'POST'])
+@login_required
+def follow():
+    user = User.query.filter(User.username == name).first()
+    if request.method == "POST":
+        porfileUser = request.form["id"]
+        newFollow = Follow(user1ID = porfileUser, user2ID = current_user.id)
+        db.session.add(newFollow)
+        db.session.commit()
+        return render_template("/por/profile.html", user=user)
+    return render_template("/gen/search.html")

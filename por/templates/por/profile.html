@@ -11,4 +11,8 @@
         <input type="hidden" name="username" value="{{ user.username }}">
         <button type="submit">Edit profile</button>
     </form>
+    <form method="POST" action="/follow">
+        <input type="hidden" name="id" value="{{ user.id }}">
+        <button type="submit">Follow</button>
+    </form>
 {% endblock %}
