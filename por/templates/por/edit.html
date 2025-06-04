@@ -9,9 +9,11 @@
         <br>
         <textarea name="bio" required>{{ user.bio }}</textarea>
         <br>
+        <input type="email" value="{{ user.email }}" name="email" required>
+        <br>
         <div id="fileButton2">
             <label for="imagePicker" id="fileButton">Image for profile picture</label>
-            <input onchange="loadFile(event)" type="file" id="imagePicker" accept="image/*" name="imagePicker" required>
+            <input onchange="loadFile(event)" value="{{ user.profile_picture }}" type="file" id="imagePicker" accept="image/*" name="imagePicker" required>
             <img id="preview" width="50" height="40"/>
         </div>
         <button type="submit">Save changes</button>

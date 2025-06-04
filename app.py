@@ -1,9 +1,10 @@
 from flask import Flask, render_template
 from flask_login import LoginManager
 import os
-from models import db, User, Book, Review
+from models import db, User
 from auth.auth import auth_bp
 from gen.gen import gen_bp
+from por.por import por_bp
 
 folderPath = os.path.dirname(os.path.abspath(__file__))
 
@@ -22,6 +23,7 @@ def load_user(id):
 
 app.register_blueprint(auth_bp)
 app.register_blueprint(gen_bp) 
+app.register_blueprint(por_bp) 
 
 @app.route('/', methods=['GET'])
 def index():
