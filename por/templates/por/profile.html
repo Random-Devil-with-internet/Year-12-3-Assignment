@@ -7,6 +7,20 @@
     <img id="profile_picture2" src="{{ link }}">
     <h2>{{ user.username }}</h2>
     <p id="bio">{{ user.bio }}</p>
+    <p>People who {{ user.username }} follows</p>
+    {% for follow in follows %}
+        {% if follow.user1ID == user.id %}
+            {% for u in users %}
+                {% if follow.user2ID == u.id %}
+                    <form method="POST" action="/profile">
+                        <input type="hidden" name="user" value="{{ u.username }}">
+                        {% set link = "static/" + u.profile_picture %}
+                        <li><input type="image" id="profile_picture" src="{{ link }}" alt="Submit"></li>
+                    </form>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
     <form method="POST" action="/change">
         <input type="hidden" name="username" value="{{ user.username }}">
         <button type="submit">Edit profile</button>

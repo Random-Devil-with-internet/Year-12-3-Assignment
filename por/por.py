@@ -21,9 +21,13 @@ por_bp = Blueprint('por', __name__, url_prefix='/', template_folder="templates")
 def profile():
     if request.method == "POST":
         global name
+        global follows
+        global users
+        follows = Follow.query.all()
+        users = User.query.all()
         name = request.form["user"]
         user = User.query.filter(User.username == request.form["user"]).first()
-        return render_template("/por/profile.html", user=user)
+        return render_template("/por/profile.html", user=user, follows=follows, users=users)
     return render_template("/gen/search.html")
 
 @por_bp.route('/change', methods=['GET', 'POST'])
@@ -34,8 +38,8 @@ def change():
         if user.username == current_user.username:
             return render_template("/por/edit.html", user=user)
         flash('Not your account')
-        return render_template("/por/profile.html", user=user)
-    return render_template("/por/profile.html", user=user)
+        return render_template("/por/profile.html", user=user, follows=follows, users=users)
+    return render_template("/por/profile.html", user=user, follows=follows, users=users)
 
 @por_bp.route('/edit', methods=['GET', 'POST'])
 @login_required
@@ -49,9 +53,9 @@ def edit():
             User.query.filter_by(id=user.id).update({'username':  request.form["username"], 'email': request.form["email"], 'bio': request.form["bio"],  'profile_picture': image.filename})
             db.session.commit()
             user = User.query.filter(User.username == request.form["username"]).first()
-            return render_template("/por/profile.html", user=user)
-        return render_template("/por/profile.html", user=user)
-    return render_template("/por/profile.html", user=user)
+            return render_template("/por/profile.html", user=user, follows=follows, users=users)
+        return render_template("/por/profile.html", user=user, follows=follows, users=users)
+    return render_template("/por/profile.html", user=user, follows=follows, users=users)
 
 @por_bp.route('/follow', methods=['GET', 'POST'])
 @login_required
@@ -62,5 +66,7 @@ def follow():
         newFollow = Follow(user1ID = porfileUser, user2ID = current_user.id)
         db.session.add(newFollow)
         db.session.commit()
-        return render_template("/por/profile.html", user=user)
+        follows = Follow.query.all()
+        users = User.query.all()
+        return render_template("/por/profile.html", user=user, follows=follows, users=users)
     return render_template("/gen/search.html")
