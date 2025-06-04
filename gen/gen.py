@@ -113,14 +113,16 @@ def dislike():
 @login_required
 def profile():
     if request.method == "POST":
-        global user
         user = User.query.filter(User.username == request.form["user"]).first()
         return render_template("/gen/profile.html", user=user)
     return render_template("/gen/search.html")
 
-@gen_bp.route('/edit', methods=['GET', 'POST'])
+@gen_bp.route('/change', methods=['GET', 'POST'])
 @login_required
-def edit():
+def change():
+    global name
+    name = request.form["username"]
+    user = User.query.filter(User.username == request.form["username"]).first()
     if request.method == "POST":
         if user.username == current_user.username:
             return render_template("/gen/edit.html", user=user)
@@ -128,18 +130,13 @@ def edit():
         return render_template("/gen/profile.html", user=user)
     return render_template("/gen/profile.html", user=user)
 
-
-@gen_bp.route('/change', methods=['GET', 'POST'])
+@gen_bp.route('/edit', methods=['GET', 'POST'])
 @login_required
-def change():
+def edit():
+    user = User.query.filter(User.username == name).first()
     if request.method == "POST":
-        u = update(user)
-        u.values({"username": request.form["username"]})
-        u.where(user.username == request.form["username"])
-        u.values({"bio": request.form["bio"]})
-        u.where(user.bio == request.form["bio"])
-        #image = request.files['imagePicker']
-        #print("fkglksj")
+        User.query.filter_by(id=user.id).update({'username':  request.form["username"], 'bio': request.form["bio"]})
+        db.session.commit()
         #if image and allowed_file(image.filename):
             #filename = secure_filename(image.filename)
             #image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
@@ -147,5 +144,6 @@ def change():
             #update(user).where(user.username == request.form["username"]).values(name='user #request.form["username"]')
             #update(user).where(user.bio == request.form["bio"]).values(name='user #request.form["bio"]')
             #return render_template("/gen/edit.html", user=user)
-        return render_template("/gen/edit.html", user=user)
+        user = User.query.filter(User.username == request.form["username"]).first()
+        return render_template("/gen/profile.html", user=user)
     return render_template("/gen/profile.html", user=user)
