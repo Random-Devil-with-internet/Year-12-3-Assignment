@@ -211,6 +211,7 @@ svg {
     border: 2px solid rgb(69, 68, 68);
     border-radius: 5px;
     padding-left: 0;
+    display: inline-block;
 }
 
 #profile_picture2 {

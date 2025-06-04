@@ -15,7 +15,7 @@
                     <form method="POST" action="/profile">
                         <input type="hidden" name="user" value="{{ u.username }}">
                         {% set link = "static/" + u.profile_picture %}
-                        <li><input type="image" id="profile_picture" src="{{ link }}" alt="Submit"></li>
+                        <input type="image" id="profile_picture" src="{{ link }}" alt="Submit">
                     </form>
                 {% endif %}
             {% endfor %}
