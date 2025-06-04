@@ -45,7 +45,7 @@ def review():
         db.session.commit()
         reviews = Review.query.all()
         users = User.query.all()
-        return redirect(url_for('gen.book'))
+        return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
     return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
 
 @gen_bp.route('/like', methods=['GET', 'POST'])
