@@ -135,15 +135,13 @@ def change():
 def edit():
     user = User.query.filter(User.username == name).first()
     if request.method == "POST":
-        User.query.filter_by(id=user.id).update({'username':  request.form["username"], 'bio': request.form["bio"]})
-        db.session.commit()
-        #if image and allowed_file(image.filename):
-            #filename = secure_filename(image.filename)
-            #image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            #update(user).where(user.profile_picture == image.filename).values(name="user #image.filename")
-            #update(user).where(user.username == request.form["username"]).values(name='user #request.form["username"]')
-            #update(user).where(user.bio == request.form["bio"]).values(name='user #request.form["bio"]')
-            #return render_template("/gen/edit.html", user=user)
-        user = User.query.filter(User.username == request.form["username"]).first()
+        image = request.files['imagePicker']
+        if image and allowed_file(image.filename):
+            filename = secure_filename(image.filename)
+            image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename)) 
+            User.query.filter_by(id=user.id).update({'username':  request.form["username"], 'bio': request.form["bio"],  'profile_picture': image.filename})
+            db.session.commit()
+            user = User.query.filter(User.username == request.form["username"]).first()
+            return render_template("/gen/profile.html", user=user)
         return render_template("/gen/profile.html", user=user)
     return render_template("/gen/profile.html", user=user)

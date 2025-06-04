@@ -4,7 +4,7 @@
 
 {% block content %}
 {% set link = "static/" + user.profile_picture %}
-    <form method="POST" action="/edit">
+    <form method="POST" action="/edit" enctype="multipart/form-data">
         <input type="username" value="{{ user.username }}" name="username" required>
         <br>
         <textarea name="bio" required>{{ user.bio }}</textarea>
