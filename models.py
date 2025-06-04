@@ -47,3 +47,11 @@ class Like(db.Model):
     
     def __repr__(self):
         return f"<User {self.id} - {self.reviewID}>"
+    
+class Follow(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    reviewID = db.Column(db.Integer, db.ForeignKey(Review.id), nullable=False)
+    userID = db.Column(db.Integer, db.ForeignKey(User.id), nullable=False)
+    
+    def __repr__(self):
+        return f"<User {self.id} - {self.reviewID}>"
