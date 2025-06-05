@@ -1,1 +1,6 @@
-👍{{ likeCount }}
+{% if mode == 'L' %}
+    👍{{ likeCount }}
+{% endif %}
+{% if mode == 'D' %}
+    👎{{ likeCount }}
+{% endif %}
