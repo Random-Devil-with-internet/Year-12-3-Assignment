@@ -4,6 +4,43 @@
 
 {% block content %}
 <h2>{{ book.title }}</h2>
+{% set count = 0 %}
+{% set nsg = namespace(count=count) %}
+{% set count2 = 0 %}
+{% set nsg2 = namespace(coun2t=count2) %}
+{% for review in reviews %}
+    {% if book.id == review.bookID %}
+        {% set nsg.count = nsg.count|float + review.rating|float %}
+        {% set nsg.count2 = nsg2.count2|int + 1 %}
+    {% endif %}
+{% endfor %}
+
+{% set avg = 0 %}
+{% set nsg3 = namespace(avg=avg) %}
+{% set nsg3.avg = nsg.count|float / nsg2.count2|int %}
+
+{% for i in range(0, nsg3.avg ) %}
+    <svg width="23" height="25">
+        <polygon id="yellowStar" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
+    </svg>
+{%endfor%}
+{% if nsg3.avg % 1 != 0 %}
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="23" height="25">
+        <defs>
+        <linearGradient id="grad">
+            <stop offset="50%" stop-color="#fbff00"/>
+            <stop offset="50%" stop-color="#989898"/>
+        </linearGradient>
+        </defs>
+        <polygon fill="url(#grad)" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
+    </svg>
+{% endif %}
+{% for i in range(0, 4 - nsg3.avg) %}
+    <svg width="23" height="25">
+        <polygon id="greyStar" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
+    </svg>
+{%endfor%}
+
 <p id="inline-block-child">By {{ book.author }} |</p>
 <p id="inline-block-child">Genre: {{ book.genre }} |</p>
 <p id="inline-block-child">Publishing date: {{ book.publishing_date }}</p>
