@@ -35,10 +35,7 @@ def profile():
 def change():
     user = User.query.filter(User.username == request.form["username"]).first()
     if request.method == "POST":
-        if user.username == current_user.username:
-            return render_template("/por/edit.html", user=user)
-        flash('Not your account')
-        return render_template("/por/profile.html", user=user, follows=follows, users=users)
+        return render_template("/por/edit.html", user=user)
     return render_template("/por/profile.html", user=user, follows=follows, users=users)
 
 @por_bp.route('/edit', methods=['GET', 'POST'])
