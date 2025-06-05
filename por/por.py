@@ -63,10 +63,21 @@ def follow():
     user = User.query.filter(User.username == name).first()
     if request.method == "POST":
         porfileUser = request.form["id"]
-        newFollow = Follow(user1ID = porfileUser, user2ID = current_user.id)
-        db.session.add(newFollow)
-        db.session.commit()
-        follows = Follow.query.all()
+        if current_user.id != int(porfileUser):
+            check = Follow.query.filter(Follow.user1ID == porfileUser).first()
+            if check == None:
+                newFollow = Follow(user1ID = porfileUser, user2ID = current_user.id)
+                db.session.add(newFollow)
+                db.session.commit()
+                follows = Follow.query.all()
+                users = User.query.all()
+                return render_template("/por/profile.html", user=user, follows=follows, users=users)
+            users = User.query.all()
+            follows = Follow.query.all()
+            flash('No duplicate follows')
+            return render_template("/por/profile.html", user=user, follows=follows, users=users)
         users = User.query.all()
+        follows = Follow.query.all()
+        flash('You can not follow your self')
         return render_template("/por/profile.html", user=user, follows=follows, users=users)
     return render_template("/gen/search.html")
