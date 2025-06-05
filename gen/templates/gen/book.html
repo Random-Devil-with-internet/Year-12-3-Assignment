@@ -4,27 +4,29 @@
 
 {% block content %}
 <h2>{{ book.title }}</h2>
+{% set r = 0 %}
+{% set nsg = namespace(r=r) %}
 {% set count = 0 %}
-{% set nsg = namespace(count=count) %}
-{% set count2 = 0 %}
-{% set nsg2 = namespace(coun2t=count2) %}
+{% set ns = namespace(count=count) %}
 {% for review in reviews %}
     {% if book.id == review.bookID %}
-        {% set nsg.count = nsg.count|float + review.rating|float %}
-        {% set nsg.count2 = nsg2.count2|int + 1 %}
+        {% set nsg.r = nsg.r|float + review.rating|float %}
+        {% set ns.count = ns.count|int + 1 %}
     {% endif %}
 {% endfor %}
 
 {% set avg = 0 %}
-{% set nsg3 = namespace(avg=avg) %}
-{% set nsg3.avg = nsg.count|float / nsg2.count2|int %}
+{% set n = namespace(avg=avg) %}
+{% if ns.count|int != 0 %}
+    {% set n.avg = nsg.r|float / ns.count|int %}
+{% endif %}
 
-{% for i in range(0, nsg3.avg ) %}
+{% for i in range(0, n.avg|int) %}
     <svg width="23" height="25">
         <polygon id="yellowStar" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
     </svg>
 {%endfor%}
-{% if nsg3.avg % 1 != 0 %}
+{% if n.avg % 1 != 0 %}
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="23" height="25">
         <defs>
         <linearGradient id="grad">
@@ -35,7 +37,7 @@
         <polygon fill="url(#grad)" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
     </svg>
 {% endif %}
-{% for i in range(0, 4 - nsg3.avg) %}
+{% for i in range(0, 4 - n.avg|int) %}
     <svg width="23" height="25">
         <polygon id="greyStar" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
     </svg>
