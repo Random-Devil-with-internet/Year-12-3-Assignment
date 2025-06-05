@@ -24,10 +24,12 @@
         {% endif %}
     {% endfor %}
     </div>
-    <form method="POST" action="/change">
-        <input type="hidden" name="username" value="{{ user.username }}">
-        <button id="change" type="submit">Edit profile</button>
-    </form>
+    {% if user.id == current_user.id %}
+        <form method="POST" action="/change">
+            <input type="hidden" name="username" value="{{ user.username }}">
+            <button id="change" type="submit">Edit profile</button>
+        </form>
+    {% endif %}
     <form method="POST" action="/follow">
         <input type="hidden" name="id" value="{{ user.id }}">
         <button type="submit">Follow</button>
