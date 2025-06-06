@@ -51,51 +51,67 @@ def review():
 @gen_bp.route('/like', methods=['GET', 'POST'])
 @login_required
 def like():
-    mode = 'L'
     if request.method == "POST":
-        if Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form.get("reviewID"), Like.like == 1, Like.dislike == 0)).first() == None and Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form["reviewID"], Like.like == 0, Like.dislike == 1)).first() == None:
+        if Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form.get("reviewID"), Like.like == 1, Like.dislike == 0)).first() == None:
             newLike = Like(reviewID = request.form.get("reviewID"), userID = current_user.id, like = 1, dislike = 0)
             db.session.add(newLike)
             db.session.commit()
+            if Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form["reviewID"], Like.like == 0, Like.dislike == 1)).first() != None:
+                Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form["reviewID"], Like.like == 0, Like.dislike == 1)).delete()
+                db.session.commit()
             likes = Like.query.all()
             likeCount = 0
+            dislikeCount = 0
             for like in likes:
                 if int(request.form["reviewID"]) == like.reviewID:
                     likeCount = likeCount + int(like.like)
-            return render_template("/gen/button.html", likeCount=likeCount, mode=mode)
+                    dislikeCount = dislikeCount + int(like.dislike)
+            review = request.form.get("reviewID")
+            return render_template("/gen/button.html", likeCount=likeCount, dislikeCount=dislikeCount, review=review)
         else:
             Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form.get("reviewID"), Like.like == 1, Like.dislike == 0)).delete()
             db.session.commit()
             likes = Like.query.all()
             likeCount = 0
+            dislikeCount = 0
             for like in likes:
                 if int(request.form["reviewID"]) == like.reviewID:
                     likeCount = likeCount + int(like.like)
-            return render_template("/gen/button.html", likeCount=likeCount, mode=mode)
+                    dislikeCount = dislikeCount + int(like.dislike)
+            review = request.form.get("reviewID")
+            return render_template("/gen/button.html", likeCount=likeCount, dislikeCount=dislikeCount, review=review)
     return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
 
 @gen_bp.route('/dislike', methods=['GET', 'POST'])
 @login_required
 def dislike():
-    mode = 'D'
     if request.method == "POST":
-        if Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID ==  request.form.get("reviewID"), Like.like == 1, Like.dislike == 0)).first() == None and Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form["reviewID"], Like.like == 0, Like.dislike == 1)).first() == None:
+        if Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID ==  request.form.get("reviewID"), Like.like == 0, Like.dislike == 1)).first() == None:
             newDislike= Like(reviewID = request.form.get("reviewID"), userID = current_user.id, like = 0, dislike = 1)
             db.session.add(newDislike)
             db.session.commit()
+            if Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form["reviewID"], Like.like == 1, Like.dislike == 0)).first() != None:
+                Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form["reviewID"], Like.like == 1, Like.dislike == 0)).delete()
+                db.session.commit()
             likes = Like.query.all()
             likeCount = 0
+            dislikeCount = 0
             for like in likes:
                 if int(request.form["reviewID"]) == like.reviewID:
-                    likeCount = likeCount + int(like.dislike)
-            return render_template("/gen/button.html", likeCount=likeCount, mode=mode)
+                    likeCount = likeCount + int(like.like)
+                    dislikeCount = dislikeCount + int(like.dislike)
+            review = request.form.get("reviewID")
+            return render_template("/gen/button.html", likeCount=likeCount, dislikeCount=dislikeCount, review=review)
         else:
             Like.query.filter(and_(Like.userID == current_user.id, Like.reviewID == request.form.get("reviewID"), Like.like == 0, Like.dislike == 1)).delete()
             db.session.commit()
             likes = Like.query.all()
             likeCount = 0
+            dislikeCount = 0
             for like in likes:
                 if int(request.form["reviewID"]) == like.reviewID:
-                    likeCount = likeCount + int(like.dislike)
-            return render_template("/gen/button.html", likeCount=likeCount, mode=mode)
+                    likeCount = likeCount + int(like.like)
+                    dislikeCount = dislikeCount + int(like.dislike)
+            review = request.form.get("reviewID")
+            return render_template("/gen/button.html", likeCount=likeCount, dislikeCount=dislikeCount, review=review)
     return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)

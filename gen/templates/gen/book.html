@@ -95,26 +95,28 @@
                 <br>
                 {% set likeCount = 0 %}
                 {% set ns = namespace(likeCount=likeCount) %}
-                    {% for like in likes %}
-                        {% if review.id == like.reviewID %}
-                            {% set ns.likeCount = ns.likeCount|int + like.like|int %}
-                        {% endif %}
-                    {% endfor %}
-                <form method="POST" action="/like">
-                    <input type="hidden" name="reviewID" value="{{ review.id }}">
-                    <button hx-post="/like" hx-trigger="click" id="like">👍{{ ns.likeCount }}</button>
-                </form>
-                {% set dislikeCount = 0 %}
-                {% set ns = namespace(dislikeCount=dislikeCount) %}
+                {% for like in likes %}
+                    {% if review.id == like.reviewID %}
+                        {% set ns.likeCount = ns.likeCount|int + like.like|int %}
+                    {% endif %}
+                {% endfor %}
+                <div id="like_dislike{{ review.id }}">
+                    <form method="POST" action="/like">
+                        <input type="hidden" name="reviewID" value="{{ review.id }}">
+                        <button hx-post="/like" hx-trigger="click" hx-target="#like_dislike{{ review.id }}" id="like">👍{{ ns.likeCount }}</button>
+                    </form>
+                    {% set dislikeCount = 0 %}
+                    {% set ns = namespace(dislikeCount=dislikeCount) %}
                     {% for like in likes %}
                         {% if review.id == like.reviewID %}
                             {% set ns.dislikeCount = ns.dislikeCount|int + like.dislike|int %}
                         {% endif %}
                     {% endfor %}
-                <form method="POST" action="/dislike">
-                    <input type="hidden" name="reviewID" value="{{ review.id }}">
-                    <button hx-post="/dislike" hx-trigger="click" id="dislike">👎{{ ns.dislikeCount }}</button>
-                </form>      
+                    <form method="POST" action="/dislike">
+                        <input type="hidden" name="reviewID" value="{{ review.id }}">
+                        <button hx-post="/dislike" hx-trigger="click" hx-target="#like_dislike{{ review.id }}" id="dislike">👎{{ ns.dislikeCount }}</button>
+                    </form> 
+                </div> 
             {% endif %}
         {% endfor %}
     {% endif %}

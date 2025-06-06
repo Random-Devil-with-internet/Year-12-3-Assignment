@@ -1,6 +1,10 @@
-{% if mode == 'L' %}
-    👍{{ likeCount }}
-{% endif %}
-{% if mode == 'D' %}
-    👎{{ likeCount }}
-{% endif %}
+<div id="like_dislike{{ review }}">
+    <form method="POST" action="/like">
+        <input type="hidden" name="reviewID" value="{{ review }}">
+        <button hx-post="/like" hx-trigger="click" hx-target="#like_dislike{{ review }}" id="like">👍{{ likeCount }}</button>
+    </form>
+    <form method="POST" action="/dislike">
+        <input type="hidden" name="reviewID" value="{{ review }}">
+        <button hx-post="/dislike" hx-trigger="click" hx-target="#like_dislike{{ review }}" id="dislike">👎{{ dislikeCount }}</button>
+    </form> 
+</div> 
