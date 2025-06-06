@@ -9,6 +9,7 @@ html {
 }
   
 h2 {
+    display: inline;
     margin-bottom: 10px;
     font-size: 30px;
 }
@@ -113,6 +114,10 @@ svg {
 
 #greyStar {
     fill:#989898;
+}
+
+#avgStar {
+    justify-content: flex-end;
 }
 
 #signupButton {

@@ -3,6 +3,7 @@
 {% block title %}{{ book.title }} - LitLounge{% endblock %}
 
 {% block content %}
+<div id="con3">
 <h2>{{ book.title }}</h2>
 {% set r = 0 %}
 {% set nsg = namespace(r=r) %}
@@ -22,12 +23,12 @@
 {% endif %}
 
 {% for i in range(0, n.avg|int) %}
-    <svg width="23" height="25">
+    <svg id="avgStar" width="23" height="25">
         <polygon id="yellowStar" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
     </svg>
 {%endfor%}
 {% if n.avg % 1 != 0 %}
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="23" height="25">
+    <svg id="avgStar" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="23" height="25">
         <defs>
         <linearGradient id="grad">
             <stop offset="50%" stop-color="#fbff00"/>
@@ -38,10 +39,11 @@
     </svg>
 {% endif %}
 {% for i in range(0, 4 - n.avg|int) %}
-    <svg width="23" height="25">
+    <svg id="avgStar" width="23" height="25">
         <polygon id="greyStar" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
     </svg>
 {%endfor%}
+</div>
 
 <p id="inline-block-child">By {{ book.author }} |</p>
 <p id="inline-block-child">Genre: {{ book.genre }} |</p>
