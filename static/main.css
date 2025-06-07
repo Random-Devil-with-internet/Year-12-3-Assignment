@@ -111,6 +111,10 @@ svg {
     display: none;
 }
 
+#logo {
+    margin-left: 10px;
+}
+
 #yellowStar {
     fill:#fbff00;
 }
