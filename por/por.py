@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, Flask, flash
 from flask_login import current_user, login_required
-from models import db, User, Follow, Review
+from models import db, User, Follow, Review, Book
 from werkzeug.utils import secure_filename
 import os
 
@@ -24,12 +24,14 @@ def profile():
         global follows
         global users
         global reviews
+        global books
+        books = Book.query.all()
         reviews = Review.query.all()
         follows = Follow.query.all()
         users = User.query.all()
         name = request.form["user"]
         user = User.query.filter(User.username == request.form["user"]).first()
-        return render_template("/por/profile.html", user=user, follows=follows, users=users, reviews=reviews)
+        return render_template("/por/profile.html", user=user, follows=follows, users=users, reviews=reviews, books=books)
     return render_template("/gen/search.html")
 
 @por_bp.route('/change', methods=['GET', 'POST'])
@@ -38,7 +40,7 @@ def change():
     user = User.query.filter(User.username == request.form["username"]).first()
     if request.method == "POST":
         return render_template("/por/edit.html", user=user)
-    return render_template("/por/profile.html", user=user, follows=follows, users=users, reviews=reviews)
+    return render_template("/por/profile.html", user=user, follows=follows, users=users, reviews=reviews, books=books)
 
 @por_bp.route('/edit', methods=['GET', 'POST'])
 @login_required
@@ -52,9 +54,9 @@ def edit():
             User.query.filter_by(id=user.id).update({'username':  request.form["username"], 'email': request.form["email"], 'bio': request.form["bio"],  'profile_picture': image.filename})
             db.session.commit()
             user = User.query.filter(User.username == request.form["username"]).first()
-            return render_template("/por/profile.html", user=user, follows=follows, users=users, reviews=reviews)
-        return render_template("/por/profile.html", user=user, follows=follows, users=users, reviews=reviews)
-    return render_template("/por/profile.html", user=user, follows=follows, users=users, reviews=reviews)
+            return render_template("/por/profile.html", user=user, follows=follows, users=users, reviews=reviews, books=books)
+        return render_template("/por/profile.html", user=user, follows=follows, users=users, reviews=reviews, books=books)
+    return render_template("/por/profile.html", user=user, follows=follows, users=users, reviews=reviews, books=books)
 
 @por_bp.route('/follow', methods=['GET', 'POST'])
 @login_required
@@ -70,14 +72,14 @@ def follow():
                 db.session.commit()
                 follows = Follow.query.all()
                 users = User.query.all()
-                return render_template("/por/profile.html", user=user, follows=follows, users=users, reviews=reviews)
+                return render_template("/por/profile.html", user=user, follows=follows, users=users, reviews=reviews, books=books)
             Follow.query.filter(Follow.user1ID == porfileUser).delete()
             db.session.commit()
             users = User.query.all()
             follows = Follow.query.all()
-            return render_template("/por/profile.html", user=user, follows=follows, users=users, reviews=reviews)
+            return render_template("/por/profile.html", user=user, follows=follows, users=users, reviews=reviews, books=books)
         users = User.query.all()
         follows = Follow.query.all()
         flash('You can not follow your self')
-        return render_template("/por/profile.html", user=user, follows=follows, users=users, reviews=reviews)
+        return render_template("/por/profile.html", user=user, follows=follows, users=users, reviews=reviews, books=books)
     return render_template("/gen/search.html")

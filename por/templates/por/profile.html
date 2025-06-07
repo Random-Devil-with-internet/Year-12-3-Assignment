@@ -39,9 +39,13 @@
     <h2>Reviews that {{ user.username }} has made</h2>
     {% for review in reviews %}
         {% if review.userID == user.id %}
-            <h3>{{ review.title }}</h3>
-            <p>{{ review.text }}</p>
-            <br>
+            {% for book in books %}
+                {% if review.bookID == book.id %}
+                    <h3>{{ review.title }} | {{ book.title }}</h3>
+                    <p>{{ review.text }}</p>
+                    <br>
+                {% endif %}
+            {% endfor %}
         {% endif %}
     {% endfor %}
 {% endblock %}
