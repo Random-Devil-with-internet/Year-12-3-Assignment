@@ -20,4 +20,20 @@
         <button type="submit">{{ result.title }}</button>
     </form>
 {% endfor %}
+
+<br>
+<h2>Books:</h2>
+
+{% for book in books%}
+    <div id="book">
+    <br>
+    <h3>{{ book.title }}</h3>
+    <br>
+    <form method="POST" action="/book">
+        <input type="hidden" value="{{ book.title }}" name="bookName"/>
+        <input type="image" id="book_picture" src="{{ book.cover_link }}" alt="Submit">
+    </form>
+    </div>
+{% endfor %}
+
 {% endblock %}

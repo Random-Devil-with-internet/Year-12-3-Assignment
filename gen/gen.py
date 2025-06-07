@@ -9,12 +9,14 @@ gen_bp = Blueprint('gen', __name__, url_prefix='/', template_folder="templates")
 @gen_bp.route('/search', methods=['GET', 'POST'])
 @login_required
 def search():
+    global books
+    books = Book.query.order_by(Book.title)
     if request.method == "POST":
         results = Book.query.filter(Book.title.like(request.form["search"] + '%')).all() 
         results = results + Book.query.filter(Book.title.like('% ' + request.form["search"] + '%')).all()
         results = list(dict.fromkeys(results))
-        return render_template("/gen/search.html", results=results)
-    return render_template("/gen/search.html")
+        return render_template("/gen/search.html", results=results, books=books)
+    return render_template("/gen/search.html", books=books)
 
 @gen_bp.route('/book', methods=['GET', 'POST'])
 @login_required
@@ -30,7 +32,7 @@ def book():
         users = User.query.all()
         likes = Like.query.all()
         return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
-    return render_template("/gen/search.html")
+    return render_template("/gen/search.html", books=books)
 
 @gen_bp.route('/review', methods=['GET', 'POST'])
 @login_required
