@@ -9,8 +9,7 @@ html {
 }
   
 h2 {
-    display: inline;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     font-size: 30px;
 }
 
@@ -93,6 +92,10 @@ textarea {
 svg {
     margin: 0px;
     padding-top: 7px;
+}
+
+#bookTitle {
+    display: inline;
 }
 
 #preview {
@@ -307,4 +310,8 @@ svg {
   &::-moz-range-thumb {
     opacity: 0;
   }
+}
+
+#reviewMaker {
+    margin-top: 30px;
 }
