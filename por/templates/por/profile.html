@@ -34,4 +34,14 @@
         <input type="hidden" name="id" value="{{ user.id }}">
         <button type="submit">Follow</button>
     </form>
+    <br>
+    <br>
+    <h2>Reviews that {{ user.username }} has made</h2>
+    {% for review in reviews %}
+        {% if review.userID == user.id %}
+            <h3>{{ review.title }}</h3>
+            <p>{{ review.text }}</p>
+            <br>
+        {% endif %}
+    {% endfor %}
 {% endblock %}
