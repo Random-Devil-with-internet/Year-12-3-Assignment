@@ -117,7 +117,7 @@ svg {
 }
 
 #avgStar {
-    justify-content: flex-end;
+     float: right;
 }
 
 #signupButton {

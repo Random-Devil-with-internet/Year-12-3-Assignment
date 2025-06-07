@@ -21,28 +21,37 @@
 {% if ns.count|int != 0 %}
     {% set n.avg = nsg.r|float / ns.count|int %}
 {% endif %}
-
-{% for i in range(0, n.avg|int) %}
-    <svg id="avgStar" width="23" height="25">
-        <polygon id="yellowStar" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
-    </svg>
-{%endfor%}
-{% if n.avg % 1 != 0 %}
-    <svg id="avgStar" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="23" height="25">
-        <defs>
-        <linearGradient id="grad">
-            <stop offset="50%" stop-color="#fbff00"/>
-            <stop offset="50%" stop-color="#989898"/>
-        </linearGradient>
-        </defs>
-        <polygon fill="url(#grad)" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
-    </svg>
+<div id="avgStar">
+{% if n.avg != 0 %}
+    {% for i in range(0, n.avg|int) %}
+        <svg width="23" height="25">
+            <polygon id="yellowStar" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
+        </svg>
+    {%endfor%}
+    {% if n.avg % 1 != 0 %}
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="23" height="25">
+            <defs>
+            <linearGradient id="grad">
+                <stop offset="50%" stop-color="#fbff00"/>
+                <stop offset="50%" stop-color="#989898"/>
+            </linearGradient>
+            </defs>
+            <polygon fill="url(#grad)" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
+        </svg>
+    {% endif %}
+    {% for i in range(0, 4 - n.avg|int) %}
+        <svg width="23" height="25">
+            <polygon id="greyStar" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
+        </svg>
+    {% endfor %}
+{% else %}
+    {% for i in range(0, 5) %}
+        <svg width="23" height="25">
+            <polygon id="greyStar" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
+        </svg>
+    {% endfor %}  
 {% endif %}
-{% for i in range(0, 4 - n.avg|int) %}
-    <svg id="avgStar" width="23" height="25">
-        <polygon id="greyStar" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
-    </svg>
-{%endfor%}
+</div>
 </div>
 
 <p id="inline-block-child">By {{ book.author }} |</p>
@@ -73,7 +82,7 @@
                     <svg width="23" height="25">
                         <polygon id="yellowStar" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
                     </svg>
-                {%endfor%}
+                {% endfor %}
                 {% if review.rating|float % 1 != 0 %}
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="23" height="25">
                         <defs>
@@ -89,7 +98,7 @@
                     <svg width="23" height="25">
                         <polygon id="greyStar" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
                     </svg>
-                {%endfor%}
+                {% endfor %}
                 </ul>
                 <br>
                 <br>
