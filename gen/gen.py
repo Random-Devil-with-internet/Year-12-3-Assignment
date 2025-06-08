@@ -117,3 +117,16 @@ def dislike():
             review = request.form.get("reviewID")
             return render_template("/gen/button.html", likeCount=likeCount, dislikeCount=dislikeCount, review=review)
     return render_template("/gen/book.html", users=users, reviews=reviews, book=book, likes=likes)
+
+@gen_bp.route('/admin', methods=['GET', 'POST'])
+@login_required
+def admin():
+    if int(current_user.role) == 1:
+        if request.method == "POST":
+            newBook = Book(title = request.form["title"], author = request.form["author"], genre = request.form["genre"], publishing_date = request.form["publishing_date"], blurb = request.form["blurb"], cover_link = request.form["cover_link"])
+            db.session.add(newBook)
+            db.session.commit()
+            return redirect(url_for('gen.search'))
+        return render_template("/gen/admin.html")
+    else:
+        return redirect(url_for('gen.search'))

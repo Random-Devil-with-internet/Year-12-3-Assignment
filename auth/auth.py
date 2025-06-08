@@ -45,7 +45,7 @@ def signup():
                     image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
                     hashedPass = generate_password_hash(request.form["password"])
-                    newUser = User(username = request.form["username"], password = hashedPass, email = request.form["email"], bio = request.form["bio"], profile_picture = image.filename)
+                    newUser = User(username = request.form["username"], password = hashedPass, email = request.form["email"], bio = request.form["bio"], profile_picture = image.filename, role = 0)
                     db.session.add(newUser)
                     db.session.commit()
                     return redirect(url_for('auth.login'))

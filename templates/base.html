@@ -26,6 +26,9 @@
                 <li><a href="{{ url_for('auth.login') }}">Login</a></li>
                 <li><a href="{{ url_for('auth.signup') }}">Sign Up</a></li>
             {% endif %}
+            {% if current_user.role == 1 %}
+                <li><a href="{{ url_for('gen.admin') }}">Add a book</a></li>
+            {% endif %}
         </ul>
         <hr>
     </header>

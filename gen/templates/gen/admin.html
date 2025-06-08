@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Admin - LitLounge{% endblock %}
+
+{% block content %}
+<h2>Admin - Add a book</h2>
+<form method="POST" action="/admin">
+    <input type="text" placeholder="Title" name="title" required>
+    <br>
+    <input type="text" placeholder="Author" name="author" required>
+    <br>
+    <input type="text" placeholder="Genre" name="genre" required>
+    <br>
+    <input type="date" placeholder="Publishing date" name="publishing_date" required>
+    <br>
+    <input type="url" placeholder="Cover link" name="cover_link">
+    <br>
+    <p>Blurb</p>
+    <textarea name="blurb" required></textarea>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}
