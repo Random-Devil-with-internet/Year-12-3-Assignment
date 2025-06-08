@@ -22,9 +22,15 @@
     {% set n.avg = nsg.r|float / ns.count|int %}
 {% endif %}
 <div id="avgStar">
-{% if n.avg != 0 %}
-    {% for i in range(0, n.avg|int) %}
+{% if n.avg == 5 %}
+    {% for i in range(0, 5) %}
         <svg width="23" height="25">
+            <polygon id="yellowStar" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
+        </svg>
+    {% endfor %} 
+{% elif n.avg != 0 %}
+    {% for i in range(0, n.avg|int) %}
+            <svg width="23" height="25">
             <polygon id="yellowStar" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
         </svg>
     {%endfor%}
@@ -39,7 +45,7 @@
             <polygon fill="url(#grad)" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
         </svg>
     {% endif %}
-    {% for i in range(0, 4 - n.avg|int) %}
+    {% for i in range(0, 5 - n.avg|int) %}
         <svg width="23" height="25">
             <polygon id="greyStar" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
         </svg>
@@ -96,7 +102,7 @@
                         <polygon fill="url(#grad)" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
                     </svg>
                 {% endif %}
-                {% for i in range(0, 4 - review.rating|int) %}
+                {% for i in range(0, 5 - review.rating|int) %}
                     <svg width="23" height="25">
                         <polygon id="greyStar" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
                     </svg>
