@@ -3,14 +3,14 @@
 ## Design Process and Prototyping
 I decided to make my website about reviewing books.
 
-To get inspiration for my user interface I used the imdb website specifically the pages on specific movies to model my website off.
+To get inspiration for my user interface I used the imdb website specifically the pages on a specific movie to model my website off.
 
-Dune as example of a movie on imdb
+Dune as an example of a movie on imdb
 ![Html Dune as example of a movie on imdb](https://github.com/Random-Devil-with-internet/Year-12-3-Assignment/blob/main/Dune.png)
 
 The page consists of the title, year of publication and rating. Below that there is a poster image of the movie with a brief description of it. And this is also a separate page for the user reviews.
 
-So for my user interface I decided to 
+So for my user interface I decided to put the title and average star rating on the top. With the author, genre and publishing date just below. The description and the cover image side by side. 
 ## Technology Theories
 
 ## Testing Processes
