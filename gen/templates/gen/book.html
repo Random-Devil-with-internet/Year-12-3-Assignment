@@ -44,12 +44,18 @@
             </defs>
             <polygon fill="url(#grad)" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
         </svg>
+        {% for i in range(0, 4 - n.avg|int) %}
+            <svg width="23" height="25">
+                <polygon id="greyStar" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
+            </svg>
+        {% endfor %}
+    {% else %}
+        {% for i in range(0, 5 - n.avg|int) %}
+            <svg width="23" height="25">
+                <polygon id="greyStar" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
+            </svg>
+        {% endfor %}
     {% endif %}
-    {% for i in range(0, 4 - n.avg|int) %}
-        <svg width="23" height="25">
-            <polygon id="greyStar" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
-        </svg>
-    {% endfor %}
 {% else %}
     {% for i in range(0, 5) %}
         <svg width="23" height="25">
@@ -101,12 +107,18 @@
                         </defs>
                         <polygon fill="url(#grad)" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
                     </svg>
+                    {% for i in range(0, 4 - review.rating|int) %}
+                        <svg width="23" height="25">
+                            <polygon id="greyStar" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
+                        </svg>
+                    {% endfor %}
+                {% else %}
+                    {% for i in range(0, 5 - review.rating|int) %}
+                        <svg width="23" height="25">
+                            <polygon id="greyStar" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
+                        </svg>
+                    {% endfor %}
                 {% endif %}
-                {% for i in range(0, 4 - review.rating|int) %}
-                    <svg width="23" height="25">
-                        <polygon id="greyStar" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
-                    </svg>
-                {% endfor %}
                 </ul>
                 <br>
                 <br>
