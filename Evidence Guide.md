@@ -10,7 +10,7 @@ Dune as an example of a movie on imdb
 
 The page consists of the title, year of publication and rating. Below that there is a poster image of the movie with a brief description of it. And this is also a separate page for the user reviews.
 
-So for my user interface I decided to put the title and average star rating on the top. With the author, genre and publishing date just below. The description and the cover image side by side. Why this design is becauce the two most imprtant elements of the page which are the description and the cover image placed in the centre to get the mopst attention form the users.
+So for my user interface I decided to put the title and average star rating on the top. With the author, genre and publishing date just below. The description and the cover image side by side. Why this design is becauce the two most imprtant elements of the page which are the description and the cover image. Which are placed in the centre to get the most attention form the users and since they take up the most space. While the title and the average star rating are the first elements that the user sees when they open the page. To set what the page is going to be about.
 
 ## Technology Theories
 
