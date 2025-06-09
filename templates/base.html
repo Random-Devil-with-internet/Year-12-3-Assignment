@@ -11,7 +11,7 @@
 <body>
     <header>
         <ul>
-            <li><img id="logo" src="{{ url_for('static', filename='Logo.png') }}" width="50" height="40"></li>
+            <li><img id="logo" src="{{ url_for('static', filename='Logo.jpg') }}" width="50" height="40"></li>
             <li><h1>LitLounge</h1></li>
             {% if current_user.is_authenticated %}
                 <li><a href="{{ url_for('gen.search') }}">Home</a></li>
