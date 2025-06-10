@@ -16,6 +16,8 @@ The yellow stars in contrast with the grey stars help the users to distinguish b
 
 ## Technology Theories
 
+![Html The EDR of my database](https://github.com/Random-Devil-with-internet/Year-12-3-Assignment/blob/main/EDR.png)
+
 ## Testing Processes
 
 ## Design Implications - Ethical / Sustainable / Accessible
