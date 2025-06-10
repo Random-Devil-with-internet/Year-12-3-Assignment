@@ -19,7 +19,7 @@ The yellow stars in contrast with the grey stars help the users to distinguish b
 
 ![Html The review page](https://github.com/Random-Devil-with-internet/Year-12-3-Assignment/blob/main/Review%20page.png)
 
-At first I had a problem with the web page reloading each time I liked or disliked a review which was annoying. So instead of using a normal post request I tried to use a get request. Which would not reload the page. But I couldn't get it to work since maybe get requests can only request data not modify it as I was doing with the like and dislike counts. So I was suggested to use AJAX or htmx to stop the page form refreshing. I chose the latter to work with snice it was less compilated than AJAX.  
+At first I had a problem with the web page reloading each time I liked or disliked a review which was annoying. So instead of using a normal post request I tried to use a get request. Which would not reload the page. But I couldn't get it to work since maybe get requests can only request data not modify it as I was doing with the like and dislike counts. So I was suggested to use AJAX or htmx to stop the page from refreshing. I chose the latter to work with since it was less complicated than AJAX.  
 
 ## Technology Theories
 
