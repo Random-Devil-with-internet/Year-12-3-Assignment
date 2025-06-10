@@ -23,7 +23,7 @@ At first I had a problem with the web page reloading each time I liked or dislik
 
 ## Technology Theories
 
-The database that I uesed in my appulcation passes first normal from becauce all of the tables have primary keys, none of the  
+The database that I uesed in my appulcation passes first normal from becauce all of the tables have primary keys, none of the cells contain more than one value and there are no duplicates. For second normal from  
  
 The EDR of my database
 
