@@ -15,11 +15,15 @@ So for my user interface I decided to put the title and average star rating on t
 
 ![Html The book page](https://github.com/Random-Devil-with-internet/Year-12-3-Assignment/blob/main/Book%20page.png)
 
-The yellow stars in contrast with the grey stars help the users to distinguish between them two. Plus the yellows are made extra dark to help the user contrast them with the background. I also added half stars to allow users to make a more precise rating. For the review section the reviews are listed below in order form when they were made. The review layout consists of the review header. Which has a title paired with the user profile picture, date of publication and the rating of the respective book just below. The main body of text of the review is in the centre since it is the most important element in the review layout and takes up the most space. After that are the likes and dislikes for each review which are placed at the bottom. Because most users will read the review before liking or disliking it. So it makes the most sense for the likes and dislikes to be at the bottom with the review above it.           
+The yellow stars in contrast with the grey stars help the users to distinguish between them two. Plus the yellows are made extra dark to help the user contrast them with the background. I also added half stars to allow users to make a more precise rating. For the review section the reviews are listed below in order form when they were made. The review layout consists of the review header. Which has a title paired with the user profile picture, date of publication and the rating of the respective book just below. The main body of text of the review is in the centre since it is the most important element in the review layout and takes up the most space. After that are the likes and dislikes for each review which are placed at the bottom. Because most users will read the review before liking or disliking it. So it makes the most sense for the likes and dislikes to be at the bottom with the review above it. 
 
 ![Html The review page](https://github.com/Random-Devil-with-internet/Year-12-3-Assignment/blob/main/Review%20page.png)
 
+At first I had a problem with the web page reloading each time I liked or disliked a review which was anyoying. So instaed of using a normal post request I tried to ues a get request.
+
 ## Technology Theories
+
+ I used htmx    Ajackx And half star
 
 ![Html The EDR of my database](https://github.com/Random-Devil-with-internet/Year-12-3-Assignment/blob/main/EDR.png)
 
