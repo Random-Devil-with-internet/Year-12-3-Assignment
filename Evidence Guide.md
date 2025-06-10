@@ -23,9 +23,13 @@ At first I had a problem with the web page reloading each time I liked or dislik
 
 ## Technology Theories
 
- I used htmx    Ajackx And half star
+The database that I uesed in my appulcation passes first normal from becauce all of the tables have primary keys, none of the  
+ 
+The EDR of my database
 
 ![Html The EDR of my database](https://github.com/Random-Devil-with-internet/Year-12-3-Assignment/blob/main/EDR.png)
+
+I used htmx    Ajackx And half star
 
 ## Testing Processes
 
