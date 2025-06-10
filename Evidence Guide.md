@@ -23,7 +23,7 @@ At first I had a problem with the web page reloading each time I liked or dislik
 
 ## Technology Theories
 
-The database that I uesed in my appulcation passes first normal from becauce all of the tables have primary keys, none of the cells contain more than one value and there are no duplicates. For second normal from all of the tables have no partial dependency inspect for maybe the like table which includes dislikes init.
+The database that I used in my application passes first normal from because all of the tables have primary keys, none of the cells contain more than one value and there are no duplicates. For second normal from all of the tables have no partial dependency inspect for maybe the like table which includes dislikes init.
  
 The EDR of my database
 
