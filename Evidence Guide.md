@@ -29,7 +29,7 @@ The EDR of my database
 
 ![Html The EDR of my database](https://github.com/Random-Devil-with-internet/Year-12-3-Assignment/blob/main/EDR.png)
 
-I used htmx    Ajackx And half star
+I used htmx    Ajackx And half star na dtesing processes
 
 ## Testing Processes
 
