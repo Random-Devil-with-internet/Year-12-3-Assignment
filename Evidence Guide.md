@@ -53,11 +53,11 @@ For the file extraction which is used for getting the images form the user to th
    filename = secure_filename(image.filename)
    image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 ```
-To not allow users to send the incorrect file type or malware in to the appulaction. There is a list of allowed extension types "{'png', 'jpg', 'jpeg', 'gif'}" which are put into a functions called allowed_file() to check if 
-
-I used htmx    Ajackx And half star na dtesing processes and file extractio
+To not allow users to send the incorrect file type or malware into the application. There is a list of allowed extension types "{'png', 'jpg', 'jpeg', 'gif'}" which are put into a function called allowed_file() to check if the file extension is in the allowed list.
 
 ## Testing Processes
+
+The testing process that I uesed in the assignment was 
 
 ## Design Implications - Ethical / Sustainable / Accessible
 
