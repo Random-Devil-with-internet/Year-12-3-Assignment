@@ -70,3 +70,11 @@ As you can see from above I got the highest contrast ratio that you can get by u
 The passwords in the website are stored using the werkzeug.security module that has the generate_password_hash() and check_password_hash() functions to encrypt the passwords from attackers. The generate_password_hash() function uses the scrypt hashing algorithm to turn the password into a string of random characters which are all of the same size no matter the input. Which is designed to be hard for attackers who use brute-force attack to get the password because of the high resource it needs compared to other hashing algorithms like PBKDF2. In which an attacker could use a parallel attack by creating multiple simulations of it on different computers to crack the hashing algorithm. The module uses the check_password_hash() which compares the hashed password in the database with the password that you get from the login page.
 
 ## References
+
+Alvaro Montoro, (N/A), Single HTML Element Star Rating Component, Dev, Available at: https://dev.to/alvaromontoro/single-html-element-star-rating-component-205l#:~:text=The%20HTML,one%20value%2C%20and%20only%20one.
+
+Delton Rhodes, (2025), Scrypt: What is Scrypt Mining Algorithm, Komodo, Available at: https://komodoplatform.com/en/academy/scrypt-algorithm/
+
+Kolade Chris, (2022), Database Normalization – Normal Forms 1nf 2nf 3nf Table Examples, Free Code Camp, Available at: https://www.freecodecamp.org/news/database-normalization-1nf-2nf-3nf-table-examples/
+
+Marc Nealer, (2025), Rethinking the frontend with HTMX, Medium, Available at: https://medium.com/@marcnealer/rethinking-the-frontend-with-htmx-780045980352
