@@ -21,6 +21,8 @@ The yellow stars in contrast with the grey stars help the users to distinguish b
 
 At first I had a problem with the web page reloading each time I liked or disliked a review which was annoying. So instead of using a normal post request I tried to use a get request. Which would not reload the page. But I couldn't get it to work since maybe get requests can only request data not modify it as I was doing with the like and dislike counts. So I was suggested to use AJAX or htmx to stop the page from refreshing. I chose the latter to work with since it was less complicated than AJAX. How htmx works is that it uses the javascript library called AJAX which allows sending and retrieving data to and back from the server. But without the webpage refreshing when a request is made to the server. But the difference between them two is that htmx makes it so that you don't have to write javascript instead you just add write htmx attributes in the html file and that's it.
 
+The buttons are colored blue to make them stand out form the background so that the user can see them better. The buttons and images also have curved corners to make them approachable to the users and to make the website feel high quilty.
+
 ## Technology Theories
 
 The database that I used in my application passes first normal from because all of the tables have primary keys, none of the cells contain more than one value and there are no duplicates. For the second normal from all of the tables have no partial dependency inspect for maybe the like table which includes dislikes in it. I could make a separate table for dislikes but I was lazy too and just put them in the same table. And same for the third normal from, none of the tables in the database have transitive partial dependency.
@@ -28,6 +30,8 @@ The database that I used in my application passes first normal from because all 
 The EDR of my database
 
 ![Html The EDR of my database](https://github.com/Random-Devil-with-internet/Year-12-3-Assignment/blob/main/EDR.png)
+
+
 
 I used htmx    Ajackx And half star na dtesing processes
 
