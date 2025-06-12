@@ -57,7 +57,7 @@ To not allow users to send the incorrect file type or malware into the applicati
 
 ## Testing Processes
 
-The testing process that I used in the assignment was to see the goals that I had for the functionality and the requirements of a component of the softwear. I will then work out what my plan will be to test the softwear so that I can anwser the objectives better if I had not done it. Testing was done using multipal users that were given a prompt to an objectives that they should complate.
+The testing process that I used in the assignment was to see the goals that I had for the functionality and the requirements of a component of the softwear. I will then work out what my plan will be to test the software so that I can answer the objectives better if I had not done it. Testing was done using multiple users that were given a prompt to an objective that they should complete. While the users are testing the softwear I record the questions and complents that the user has about the softwear. Watch them use the softwear to see how they struggle and have eass with.
 
 ## Design Implications - Ethical / Sustainable / Accessible
 
