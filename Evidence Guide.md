@@ -33,7 +33,19 @@ The EDR of my database
 
 For the star rating system in my application I used a modified input slider in html. The input slider was modified with css to make it as a bunch of stars instead of a normal input slider which is a track. The stars also change when you drag your mouse along it with half stars being in between. For displaying the stars I used svgs that are shaped as stars. This was done though using the polygon tag in html and by using these Coordinates "12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75". To make the half yellow and grey star I used a linear gradient that has a 50% offset on each color in the gradient and is then mapped on to the star shaped svg. I did ues these two attributes in the svg tage "xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" in the assignment but then I realised that they weren't needed for the code to work.
 
-For the file extraction which is uesed for getting the images form the user to the application. I used an input tage with the attributes of type image, onchange="loadFile(event)" and accept="image/*". Which firters for only files that are images. Next in the server side code I used this code spitet to aquirea the image form the frontend.
+```html
+   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="23" height="25">
+   <defs>
+      <linearGradient id="grad">
+         <stop offset="50%" stop-color="#fbff00"/>
+         <stop offset="50%" stop-color="#989898"/>
+     </linearGradient>
+  </defs>
+  <polygon fill="url(#grad)" points="12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75"/>
+  </svg>
+```
+
+For the file extraction which is used for getting the images form the user to the application. I used an input tage with the attributes of type image, onchange="loadFile(event)" and accept="image/*". Which filters for only files that are images. Next in the server side code I used this code snippet to acquire the image from the frontend.
 
 ```python
  image = request.files['imagePicker']
@@ -41,6 +53,7 @@ For the file extraction which is uesed for getting the images form the user to t
    filename = secure_filename(image.filename)
    image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 ```
+The sucre 
 
 I used htmx    Ajackx And half star na dtesing processes and file extractio
 
