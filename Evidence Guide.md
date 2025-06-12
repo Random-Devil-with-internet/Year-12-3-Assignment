@@ -34,8 +34,8 @@ The EDR of my database
 For the star rating system in my application I used a modified input slider in html. The input slider was modified with css to make it as a bunch of stars instead of a normal input slider which is a track. The stars also change when you drag your mouse along it with half stars being in between. For displaying the stars I used svgs that are shaped as stars. This was done though using the polygon tag in html and by using these Coordinates "12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75". To make the half yellow and grey star I used a linear gradient that has a 50% offset on each color in the gradient and is then mapped on to the star shaped svg. I did ues these two attributes in the svg tage "xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" in the assignment but then I realised that they weren't needed for the code to work.
 
 ```html
-   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="23" height="25">
-   <defs>
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="23" height="25">
+  <defs>
       <linearGradient id="grad">
          <stop offset="50%" stop-color="#fbff00"/>
          <stop offset="50%" stop-color="#989898"/>
@@ -45,7 +45,7 @@ For the star rating system in my application I used a modified input slider in h
   </svg>
 ```
 
-For the file extraction which is used for getting the images form the user to the application. I used an input tage with the attributes of type image, onchange="loadFile(event)" and accept="image/*". Which filters for only files that are images. Next in the server side code I used this code snippet to acquire the image from the frontend.
+For the file extraction which is used for getting the images form the user to the application. I used an input tage with the attributes of type image, onchange="loadFile(event)" and accept="image/*". Which filters for only files that are images. Also in the html file the form tage has an extra attribute enctype="multipart/form-data" which encodes the data for you to be able to send a file though the form. Next in the server side code I used this code snippet to acquire the image from the frontend and save it to the static folder.
 
 ```python
  image = request.files['imagePicker']
@@ -53,7 +53,7 @@ For the file extraction which is used for getting the images form the user to th
    filename = secure_filename(image.filename)
    image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 ```
-The sucre 
+To not allow users to send the incorrect file type or malware in to the appulaction. There is a list of allowed extension types "{'png', 'jpg', 'jpeg', 'gif'}" which are put into a functions called allowed_file() to check if 
 
 I used htmx    Ajackx And half star na dtesing processes and file extractio
 
