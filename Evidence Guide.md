@@ -57,9 +57,11 @@ To not allow users to send the incorrect file type or malware into the applicati
 
 ## Testing Processes
 
-The testing process that I used in the assignment was to see the goals that I had for the functionality and the requirements of a component of the softwear. I will then work out what my plan will be to test the software so that I can answer the objectives better if I had not done it. Testing was done using multiple users that were given a prompt to an objective that they should complete. While the users are testing the software I record the questions and compliments that the user has about the software. Watch them use the software to see how they struggle and have ease with using the softwear. Once all of this has been finished I refect on all the data that I have just gathered and change the softwear accodily.
+The testing process that I used in the assignment was to see the goals that I had for the functionality and the requirements of a component of the softwear. I will then work out what my plan will be to test the software so that I can answer the objectives better if I had not done it. Testing was done using multiple users that were given a prompt to an objective that they should complete. While the users are testing the software I record the questions and compliments that the user has about the software. Watch them use the software to see how they struggle and have ease with using the softwear. Once all of this has been finished I reflect on all the data that I have just gathered and change the software accordingly.
 
 ## Design Implications - Ethical / Sustainable / Accessible
 
-The 
+The accessibility and usability of the website was done by makeing my wesite have a high contrast color secheme which contsists of black for the text, white for the main boby of the website and a light grey for the background. 
+
+![Html Contrast checker](https://github.com/Random-Devil-with-internet/Year-12-3-Assignment/blob/main/Contrast%20checker.png)
 
