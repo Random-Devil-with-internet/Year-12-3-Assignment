@@ -31,7 +31,7 @@ The EDR of my database
 
 ![Html The EDR of my database](https://github.com/Random-Devil-with-internet/Year-12-3-Assignment/blob/main/EDR.png)
 
-For the star rating system in my application I used a modified input slider in html. The input slider was modified with css to make it as a bunch of stars instead of a normal input slider which is a track. The stars also change when you drag your mouse along it with half stars being in between. For displaying the stars I uesed svgs that are shaped as stars. This was done though using the polygon tag in htmla and by using these condites "12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75". To make the half yellow and grey star I uesed 
+For the star rating system in my application I used a modified input slider in html. The input slider was modified with css to make it as a bunch of stars instead of a normal input slider which is a track. The stars also change when you drag your mouse along it with half stars being in between. For displaying the stars I used svgs that are shaped as stars. This was done though using the polygon tag in html and by using these Coordinates "12.5, 1.25 5.0, 24.75 23.75, 9.75 1.25, 9.75 20.0, 24.75". To make the half yellow and grey star I used a linear gradient that has a 50% offset on each color in the gradient and is maped on to the star shaped svg. I did ues these two arbibultys in the svg tage "xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" in the assghiment but then reslised that they wornt needed for the code to work.
 
 I used htmx    Ajackx And half star na dtesing processes and file extractio
 
