@@ -65,3 +65,5 @@ The accessibility and usability of the website was done by makeing my wesite hav
 
 ![Html Contrast checker](https://github.com/Random-Devil-with-internet/Year-12-3-Assignment/blob/main/Contrast%20checker.png)
 
+As you can see form above I got the highest contrast ratio that you can get by using black and white. As well as getting the highest contrast ratio it also completed all of the contrast tests. Meaning that it is easliy on the eyes of the users which makes users like the website more, use it more and esiller navagation. It also allows users with visual impairments to ues the website which expands the user base of the website. 
+
