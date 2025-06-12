@@ -61,9 +61,10 @@ The testing process that I used in the assignment was to see the goals that I ha
 
 ## Design Implications - Ethical / Sustainable / Accessible
 
-The accessibility and usability of the website was done by makeing my wesite have a high contrast color secheme which contsists of black for the text, white for the main boby of the website and a light grey for the background. 
+The accessibility and usability of the website was done by making my website have a high contrast color scheme which consists of black for the text, white for the main body of the website and a light grey for the background.
 
 ![Html Contrast checker](https://github.com/Random-Devil-with-internet/Year-12-3-Assignment/blob/main/Contrast%20checker.png)
 
-As you can see form above I got the highest contrast ratio that you can get by using black and white. As well as getting the highest contrast ratio it also completed all of the contrast tests. Meaning that it is easliy on the eyes of the users which makes users like the website more, use it more and esiller navagation. It also allows users with visual impairments to ues the website which expands the user base of the website. 
+As you can see form above I got the highest contrast ratio that you can get by using black and white. As well as getting the highest contrast ratio it also completed all of the contrast tests. Meaning that it is easy on the eyes of the users which makes users like the website more, use it more and easier navigation. It also allows users with visual impairments to use the website which expands the user base of the website. 
 
+The passwords in the website are stored using the werkzeug.security module that has the generate_password_hash() and check_password_hash() functions to encypt the passwords from attackers. The generate_password_hash() funcation uses the scrypt hashing algothium to turn the password in to a string of random charaters which are all of the same size immatter the input. Which is desghined to be hard for attckers who ues brute-force attack to get the password becuce of the high resource it needs canpaired to other hashing algothiums like PBKDF2. In which an attacker could ues a parallel attack by creating multiple simluations of it on diffrent computres to crack the hashing algothium. The module allow ueses the check_password_hash() which compairs the hashed password in the database with the password that you get form the login page.
