@@ -21,7 +21,7 @@ The yellow stars in contrast with the grey stars help the users to distinguish b
 
 At first I had a problem with the web page reloading each time I liked or disliked a review which was annoying. So instead of using a normal post request I tried to use a get request. Which would not reload the page. But I couldn't get it to work since maybe get requests can only request data not modify it as I was doing with the like and dislike counts. So I was suggested to use AJAX or htmx to stop the page from refreshing. I chose the latter to work with since it was less complicated than AJAX. How htmx works is that it uses the javascript library called AJAX which allows sending and retrieving data to and back from the server. But without the webpage refreshing when a request is made to the server. But the difference between them two is that htmx makes it so that you don't have to write javascript instead you just add write htmx attributes in the html file and that's it.
 
-The buttons are colored blue to make them stand out form the background so that the user can see them better. The buttons and images also have curved corners to make them approachable to the users and to make the website feel high quilty.
+The buttons are colored blue to make them stand out from the background so that the user can see them better. The buttons and images also have curved corners to make them approachable to the users and to make the website feel high quality.
 
 ## Technology Theories
 
@@ -31,9 +31,9 @@ The EDR of my database
 
 ![Html The EDR of my database](https://github.com/Random-Devil-with-internet/Year-12-3-Assignment/blob/main/EDR.png)
 
+For the star rating system in my appulaction I uesed a modifed input slider in html. The input slider was modifed with css to make it as a bunch of stars instand of a normal input silder which is a track. The stars also change when you drag your mouse along it with half stars being in between.
 
-
-I used htmx    Ajackx And half star na dtesing processes
+I used htmx    Ajackx And half star na dtesing processes and file extraction
 
 ## Testing Processes
 
